@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="11" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+			ALTER TABLE Docentes_concurso ADD id_municipio bigint NULL;
+			ALTER TABLE Docentes_concurso ADD CONSTRAINT Docentes_concurso_FK FOREIGN KEY (id_municipio) REFERENCES Municipios(id);
+
+			]]>
+		</sql>
+	</changeSet>
+	
+	<changeSet author="xtecuan" id="12" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+			update Docentes_concurso set id_municipio = dbo.obtenerIdMunicipio(municipio,departamento);
+			]]>
+		</sql>
+	</changeSet>
+
+	
+   <changeSet id="data_profesores-2" author="xtecuan">
+    <tagDatabase tag="data-profesores-2" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

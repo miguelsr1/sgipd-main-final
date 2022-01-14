@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm  http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+                 version="2.0">
+    <description>Native queries for SGIPD-WEB</description>
+    <named-native-query name="ReporteDocentesAplicaciones.findAll"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteDocentesAplicaciones">
+        <query>
+             <![CDATA[
+            select da.id_tramite_aplic                                                   as [idTramite],
+                   d.nombre                                                              as [departamento],
+                   m.nombre                                                              as [municipio],
+                   da.id_sigobsol_usuario                                                as [codigoDeSolicitante],
+                   cv.dui                                                                as [dui],
+                   cv.nip                                                                as [nip],
+                   cv.correo_e                                                           as [ecorreo],
+                   dbo.obtenerEspecialidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)    as [especialidad],
+                   dbo.obtenerTituloByIdSigobSolUsuario(cv.id_sigobsol_usuario)          as [titulo],
+                   dbo.obtenerUniversidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)     as [universidad],
+                   dbo.obtenerAnnioGraduacionByIdSigobSolUsuario(cv.id_sigobsol_usuario) as [annioGraduacion],
+                   cv.nombres + ' ' + cv.apellidos                                       as [nombreCompleto],
+                   cv.nombres                                                            as [nombre],
+                   cv.apellidos                                                          as [apellido],
+                   p.id_secuencial                                                       as [idDePlazaVacante],
+                   p.nivel_educativo                                                     as [nivelEducativo],
+                   ce.nombrece                                                           as [centroEducativoDePlaza],
+                   p.especialidad                                                        as [especialidadDePlazaVacantes]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+    <named-native-query name="ReporteDocentesAplicaciones.findById"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteDocentesAplicaciones">
+        <query>
+             <![CDATA[
+            select da.id_tramite_aplic                                                   as [idTramite],
+                   d.nombre                                                              as [departamento],
+                   m.nombre                                                              as [municipio],
+                   da.id_sigobsol_usuario                                                as [codigoDeSolicitante],
+                   cv.dui                                                                as [dui],
+                   cv.nip                                                                as [nip],
+                   cv.correo_e                                                           as [ecorreo],
+                   dbo.obtenerEspecialidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)    as [especialidad],
+                   dbo.obtenerTituloByIdSigobSolUsuario(cv.id_sigobsol_usuario)          as [titulo],
+                   dbo.obtenerUniversidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)     as [universidad],
+                   dbo.obtenerAnnioGraduacionByIdSigobSolUsuario(cv.id_sigobsol_usuario) as [annioGraduacion],
+                   cv.nombres + ' ' + cv.apellidos                                       as [nombreCompleto],
+                   cv.nombres                                                            as [nombre],
+                   cv.apellidos                                                          as [apellido],
+                   p.id_secuencial                                                       as [idDePlazaVacante],
+                   p.nivel_educativo                                                     as [nivelEducativo],
+                   ce.nombrece                                                           as [centroEducativoDePlaza],
+                   p.especialidad                                                        as [especialidadDePlazaVacantes]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND da.id_tramite_aplic = :idDePlazaVacante
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+    <named-native-query name="ReporteDocentesAplicaciones.findByCodigoDeSolicitante"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteDocentesAplicaciones">
+        <query>
+             <![CDATA[
+            select da.id_tramite_aplic                                                   as [idTramite],
+                   d.nombre                                                              as [departamento],
+                   m.nombre                                                              as [municipio],
+                   da.id_sigobsol_usuario                                                as [codigoDeSolicitante],
+                   cv.dui                                                                as [dui],
+                   cv.nip                                                                as [nip],
+                   cv.correo_e                                                           as [ecorreo],
+                   dbo.obtenerEspecialidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)    as [especialidad],
+                   dbo.obtenerTituloByIdSigobSolUsuario(cv.id_sigobsol_usuario)          as [titulo],
+                   dbo.obtenerUniversidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)     as [universidad],
+                   dbo.obtenerAnnioGraduacionByIdSigobSolUsuario(cv.id_sigobsol_usuario) as [annioGraduacion],
+                   cv.nombres + ' ' + cv.apellidos                                       as [nombreCompleto],
+                   cv.nombres                                                            as [nombre],
+                   cv.apellidos                                                          as [apellido],
+                   p.id_secuencial                                                       as [idDePlazaVacante],
+                   p.nivel_educativo                                                     as [nivelEducativo],
+                   ce.nombrece                                                           as [centroEducativoDePlaza],
+                   p.especialidad                                                        as [especialidadDePlazaVacantes]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND da.id_sigobsol_usuario = :codigoDeSolicitante
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+    <named-native-query name="ReporteDocentesAplicaciones.findByDepartamento"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteDocentesAplicaciones">
+        <query>
+             <![CDATA[
+            select da.id_tramite_aplic                                                   as [idTramite],
+                   d.nombre                                                              as [departamento],
+                   m.nombre                                                              as [municipio],
+                   da.id_sigobsol_usuario                                                as [codigoDeSolicitante],
+                   cv.dui                                                                as [dui],
+                   cv.nip                                                                as [nip],
+                   cv.correo_e                                                           as [ecorreo],
+                   dbo.obtenerEspecialidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)    as [especialidad],
+                   dbo.obtenerTituloByIdSigobSolUsuario(cv.id_sigobsol_usuario)          as [titulo],
+                   dbo.obtenerUniversidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)     as [universidad],
+                   dbo.obtenerAnnioGraduacionByIdSigobSolUsuario(cv.id_sigobsol_usuario) as [annioGraduacion],
+                   cv.nombres + ' ' + cv.apellidos                                       as [nombreCompleto],
+                   cv.nombres                                                            as [nombre],
+                   cv.apellidos                                                          as [apellido],
+                   p.id_secuencial                                                       as [idDePlazaVacante],
+                   p.nivel_educativo                                                     as [nivelEducativo],
+                   ce.nombrece                                                           as [centroEducativoDePlaza],
+                   p.especialidad                                                        as [especialidadDePlazaVacantes]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND d.id = :idDepartamento
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="ReporteCriterio2.findByDepartamento"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio2">
+        <query>
+             <![CDATA[
+            select da.id_tramite_aplic                                                   as [idTramite],
+                   d.nombre                                                              as [departamento],
+                   m.nombre                                                              as [municipio],
+                   da.id_sigobsol_usuario                                                as [codigoSolicitante],
+                   cv.dui                                                                as [dui],
+                   cv.nip                                                                as [nip],
+                   cv.correo_e                                                           as [ecorreo],
+                   dbo.obtenerEspecialidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)    as [especialidad],
+                   dbo.obtenerTituloByIdSigobSolUsuario(cv.id_sigobsol_usuario)          as [titulo],
+                   dbo.obtenerUniversidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)     as [universidad],
+                   dbo.obtenerAnnioGraduacionByIdSigobSolUsuario(cv.id_sigobsol_usuario) as [annioGraduacion],
+                   cv.nombres + ' ' + cv.apellidos                                       as [nombreCompleto],
+                   cv.nombres                                                            as [nombres],
+                   cv.apellidos                                                          as [apellidos],
+                   p.id_secuencial                                                       as [idDePlazaVacante],
+                   p.nivel_educativo                                                     as [nivelEducativo],
+                   ce.nombrece                                                           as [centroEducativo],
+                   p.especialidad                                                        as [especialidadPlazaVacante],
+                   'Prueba Conocimientos'                                                as [tipoPrueba],
+                   0.00                                                                  as [calificacion],
+                   ''                                                                    as [estatus],
+                   ''                                                                    as [observacion]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND d.id = :idDepartamento
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="ReporteCriterio2.findByMunicipio"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio2">
+        <query>
+             <![CDATA[
+            select da.id_tramite_aplic                                                   as [idTramite],
+                   d.nombre                                                              as [departamento],
+                   m.nombre                                                              as [municipio],
+                   da.id_sigobsol_usuario                                                as [codigoSolicitante],
+                   cv.dui                                                                as [dui],
+                   cv.nip                                                                as [nip],
+                   cv.correo_e                                                           as [ecorreo],
+                   dbo.obtenerEspecialidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)    as [especialidad],
+                   dbo.obtenerTituloByIdSigobSolUsuario(cv.id_sigobsol_usuario)          as [titulo],
+                   dbo.obtenerUniversidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)     as [universidad],
+                   dbo.obtenerAnnioGraduacionByIdSigobSolUsuario(cv.id_sigobsol_usuario) as [annioGraduacion],
+                   cv.nombres + ' ' + cv.apellidos                                       as [nombreCompleto],
+                   cv.nombres                                                            as [nombres],
+                   cv.apellidos                                                          as [apellidos],
+                   p.id_secuencial                                                       as [idDePlazaVacante],
+                   p.nivel_educativo                                                     as [nivelEducativo],
+                   ce.nombrece                                                           as [centroEducativo],
+                   p.especialidad                                                        as [especialidadPlazaVacante],
+                   'Prueba Conocimientos'                                                as [tipoPrueba],
+                   0.00                                                                  as [calificacion],
+                   ''                                                                    as [estatus],
+                   ''                                                                    as [observacion]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND m.id = :idMunicipio
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+    <named-native-query name="ReporteCriterio2.findByCentroEducativo"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio2">
+        <query>
+             <![CDATA[
+            select da.id_tramite_aplic                                                   as [idTramite],
+                   d.nombre                                                              as [departamento],
+                   m.nombre                                                              as [municipio],
+                   da.id_sigobsol_usuario                                                as [codigoSolicitante],
+                   cv.dui                                                                as [dui],
+                   cv.nip                                                                as [nip],
+                   cv.correo_e                                                           as [ecorreo],
+                   dbo.obtenerEspecialidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)    as [especialidad],
+                   dbo.obtenerTituloByIdSigobSolUsuario(cv.id_sigobsol_usuario)          as [titulo],
+                   dbo.obtenerUniversidadByIdSigobSolUsuario(cv.id_sigobsol_usuario)     as [universidad],
+                   dbo.obtenerAnnioGraduacionByIdSigobSolUsuario(cv.id_sigobsol_usuario) as [annioGraduacion],
+                   cv.nombres + ' ' + cv.apellidos                                       as [nombreCompleto],
+                   cv.nombres                                                            as [nombres],
+                   cv.apellidos                                                          as [apellidos],
+                   p.id_secuencial                                                       as [idDePlazaVacante],
+                   p.nivel_educativo                                                     as [nivelEducativo],
+                   ce.nombrece                                                           as [centroEducativo],
+                   p.especialidad                                                        as [especialidadPlazaVacante],
+                   'Prueba Conocimientos'                                                as [tipoPrueba],
+                   0.00                                                                  as [calificacion],
+                   ''                                                                    as [estatus],
+                   ''                                                                    as [observacion]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND ce.codinfra = :codInfra
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="ReporteCriterio2V2.findByDepartamento"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio2V2">
+        <query>
+             <![CDATA[
+            SELECT da.id_tramite_aplic  as [idTramite],
+                   cv.nip               as [nip],
+                   p.id_secuencial      as [idPlazaVacante],
+                   ISNULL(cv.nombres + ' ' + cv.apellidos,
+                          cv.apellidos) as [nombreCompleto],
+                   0.00                 as [calificacion],
+                   ''                   as [estatus],
+                   ''                   as [observacion]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND d.id = :idDepartamento
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="ReporteCriterio2V2.findByMunicipio"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio2V2">
+        <query>
+             <![CDATA[
+            SELECT da.id_tramite_aplic  as [idTramite],
+                   cv.nip               as [nip],
+                   p.id_secuencial      as [idPlazaVacante],
+                   ISNULL(cv.nombres + ' ' + cv.apellidos,
+                          cv.apellidos) as [nombreCompleto],
+                   0.00                 as [calificacion],
+                   ''                   as [estatus],
+                   ''                   as [observacion]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND m.id = :idMunicipio
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="ReporteCriterio2V2.findByCentroEducativo"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio2V2">
+        <query>
+             <![CDATA[
+            SELECT da.id_tramite_aplic                                   as [idTramite],
+                   cv.nip                                                as [nip],
+                   p.id_secuencial                                       as [idPlazaVacante],
+                   ISNULL(cv.nombres + ' ' + cv.apellidos, cv.apellidos) as [nombreCompleto],
+                   0.00                                                  as [calificacion],
+                   ''                                                    as [estatus],
+                   ''                                                    as [observacion]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND ce.codinfra = :codInfra
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="ReporteCriterio1V1.findByDepartamento"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio1V1">
+        <query>
+             <![CDATA[
+            SELECT da.id_tramite_aplic  as [idTramite],
+                   cv.nip               as [nip],
+                   ISNULL(cv.nombres + ' ' + cv.apellidos,
+                          cv.apellidos) as [nombreCompleto],
+                   0.00                 as [calificacion],
+                   ''                   as [estatus],
+                   ''                   as [observacion]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv,
+                 Calificaciones cal
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND da.id_tramite_aplic = cal.id_tramite_aplic
+              AND cal.id_criterio = 2
+              AND cal.aprobacion = 1
+              AND d.id = :idDepartamento
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="ReporteCriterio1V1.findByMunicipio"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio1V1">
+        <query>
+             <![CDATA[
+            SELECT da.id_tramite_aplic  as [idTramite],
+                   cv.nip               as [nip],
+                   ISNULL(cv.nombres + ' ' + cv.apellidos,
+                          cv.apellidos) as [nombreCompleto],
+                   0.00                 as [calificacion],
+                   ''                   as [estatus],
+                   ''                   as [observacion]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv,
+                 Calificaciones cal
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND da.id_tramite_aplic = cal.id_tramite_aplic
+              AND cal.id_criterio = 2
+              AND cal.aprobacion = 1
+              AND m.id = :idMunicipio
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="ReporteCriterio1V1.findByCentroEducativo"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio1V1">
+        <query>
+             <![CDATA[
+            SELECT da.id_tramite_aplic                                   as [idTramite],
+                   cv.nip                                                as [nip],
+                   ISNULL(cv.nombres + ' ' + cv.apellidos, cv.apellidos) as [nombreCompleto],
+                   0.00                                                  as [calificacion],
+                   ''                                                    as [estatus],
+                   ''                                                    as [observacion]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Departamentos d,
+                 Docentes cv,
+                 Calificaciones cal
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND da.id_tramite_aplic = cal.id_tramite_aplic
+              AND cal.id_criterio = 2
+              AND cal.aprobacion = 1
+              AND ce.codinfra = :codInfra
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="CalculateCriterio5.findAllCriterio1y2Aprobados"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.CalculateCriterio5">
+        <query>
+             <![CDATA[
+            SELECT da.id_tramite_aplic                               as [idTramite],
+                   dbo.obtenerCodInstiByIdMunicipio(cv.id_municipio) as [idMuniResidencia],
+                   dbo.obtenerCodInstiByIdDepartamento(CASE
+                                                           WHEN d2.nombre <> 'No Definido'
+                                                               THEN d2.id
+                                                           ELSE dbo.obtenerIdDepartamento(cv.departamento)
+                       END)                                          as [idDepResidencia],
+                   dbo.obtenerCodInstiByIdMunicipio(ce.id_municipio) as [idMuniPlaza],
+                   dbo.obtenerCodInstiByIdDepartamento(d.id)         as [idDepPlaza]
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Municipios m2,
+                 Departamentos d,
+                 Departamentos d2,
+                 Docentes cv,
+                 Calificaciones cal
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND da.id_tramite_aplic = cal.id_tramite_aplic
+              AND cv.id_municipio = m2.id
+              AND m2.id_departamento = d2.id
+              AND da.rechazado = 'No Rechazado'
+            ORDER by da.id_tramite_aplic
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="ReporteDocentesPruebaPsicometrica.findAllOLD"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.ReporteDocentesPruebaPsicometrica">
+        <query>
+             <![CDATA[
+            SELECT da.id_tramite_aplic                                                as [idTramite],
+                   cv.dui                                                             as [dui],
+                   cv.nip                                                             as [nip],
+                   cv.correo_e                                                        as [correo],
+                   dbo.obtenerEspecialidadByIdSigobSolUsuario(cv.id_sigobsol_usuario) as [especialidad],
+                   dbo.obtenerTituloByIdSigobSolUsuario(cv.id_sigobsol_usuario)       as [titulo],
+                   ISNULL(cv.nombres + ' ' + cv.apellidos,
+                          cv.apellidos)                                               as [nombreCompleto],
+                   cv.nombres                                                         as [nombres],
+                   cv.apellidos                                                       as [apellidos],
+                   dbo.obtenerSexoByCodigoTramite(cv.id_tramite)                      as [sexo],
+                   ISNULL(cv.discapacidad, 'Ninguna')                                 as [discapacidad],
+                   m2.id                                                              as [codigoMunicipioResidencia],
+                   CASE
+                       WHEN m2.nombre <> 'No Definido'
+                           THEN m2.nombre
+                       ELSE cv.municipio
+                       END                                                            as [municipioderesidencia],
+                   d2.id                                                              as [codigoDepartamentoResidencia],
+                   CASE
+                       WHEN d2.nombre <> 'No Definido'
+                           THEN d2.nombre
+                       ELSE cv.departamento
+                       END                                                            as [departamentoderesidencia],
+                   cv.direccion_postal                                                as [direccionResidencia],
+                   p.id_secuencial                                                    as [idDePlazaVacante],
+                   p.nivel_educativo                                                  as [nivelEducativo],
+                   ce.codinfra                                                        as [codigoinfracentroeducativo],
+                   ce.nombrece                                                        as [centroEducativoDePlaza],
+                   p.especialidad                                                     as [especialidadDePlazaVacantes],
+                   d.id                                                               as [codigoDepartamentoPlaza],
+                   d.nombre                                                           as [departamentodelaplaza],
+                   m.id                                                               as [codigomunicipio],
+                   m.nombre                                                           as [municipiodelaplazas],
+                   cal.valor_calif                                                    as [resultadospruebaconocimientos],
+                   cal.aprobacion                                                     as [aprobacion],
+                   CASE
+                       when cv.rechazado = 'Rechazado'
+                           then 1
+                       else 0
+                       end                                                            as [docenteRechazado],
+                   CASE
+                       when da.rechazado = 'Rechazado'
+                           then 1
+                       else 0
+                       end                                                            as [docenteAplicacionRechazada]
+            INTO ReporteDocentesPruebaPsicometricaAll_Data
+            FROM Docentes_aplicaciones da,
+                 Plazas p,
+                 Centros_educativos ce,
+                 Municipios m,
+                 Municipios m2,
+                 Departamentos d,
+                 Departamentos d2,
+                 Docentes cv,
+                 Calificaciones cal
+            WHERE da.id_secuencial_plaza = p.id_secuencial
+              AND p.codinfra = ce.codinfra
+              AND ce.id_municipio = m.id
+              AND m.id_departamento = d.id
+              AND da.id_sigobsol_usuario = cv.id_sigobsol_usuario
+              AND da.id_tramite_aplic = cal.id_tramite_aplic
+              AND cv.id_municipio = m2.id
+              AND m2.id_departamento = d2.id
+              AND cal.id_criterio = 2
+            ORDER BY d.nombre,
+                     m.nombre
+            ]]>
+        </query>
+
+    </named-native-query>
+
+
+    <named-native-query name="RDPPsicometrica.findAll"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.RDPPsicometrica">
+        <query>
+             <![CDATA[
+            SELECT DISTINCT nip,
+                            dui,
+                            correo,
+                            especialidad,
+                            titulo,
+                            nombreCompleto,
+                            nombres,
+                            apellidos,
+                            sexo,
+                            discapacidad,
+                            codigoMunicipioResidencia,
+                            municipioderesidencia,
+                            codigoDepartamentoResidencia,
+                            departamentoderesidencia,
+                            direccionResidencia
+            from ReporteDocentesPruebaPsicometricaAll_Data
+            WHERE aprobacion = 1
+              AND docenteRechazado = 0
+              AND docenteAplicacionRechazada = 0
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="RDPPsiIngrCalif.findAll"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.RDPPsiIngrCalif">
+        <query>
+             <![CDATA[
+            SELECT DISTINCT nip,
+                            nombreCompleto,
+                            0.00 as [calificacion],
+                            ''   as [estatus],
+                            ''   as [observacion]
+            from ReporteDocentesPruebaPsicometricaAll_Data
+            WHERE aprobacion = 1
+              AND docenteRechazado = 0
+              AND docenteAplicacionRechazada = 0
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="TramiteAplicacionDocente.docentesQueHicieronPruebaPsicometrica"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.TramiteAplicacionDocente">
+        <query>
+             <![CDATA[
+            SELECT da.id_tramite_aplic    as [idTramiteAplic],
+                   da.id_sigobsol_usuario as [idSigobsolUsuario],
+                   da.id_secuencial_plaza as [idSecuencialPlaza]
+            FROM Docentes_aplicaciones da
+            WHERE da.id_tramite_aplic IN (
+                SELECT rdppad.idTramite
+                FROM ReporteDocentesPruebaPsicometricaAll_Data rdppad
+                WHERE rdppad.aprobacion = 1
+                  AND rdppad.docenteRechazado = 0
+                  AND rdppad.docenteAplicacionRechazada = 0)
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="RDPPsiIngrCalif.fromCARGA_SIGOB_PSICOMETRICA_PLAZAS_DOCENTES"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.RDPPsiIngrCalif">
+        <query>
+             <![CDATA[
+            SELECT csppd.nip,
+                   csppd.nombres + ' ' + csppd.apellidos                                                                      as [nombreCompleto],
+                   csppd.RESULTADO                                                                                            as [calificacion],
+                   CASE
+                       WHEN csppd.RESULTADO >= 6.00
+                           THEN 'APROBADO'
+                       ELSE 'REPROBADO' END                                                                                   as [estatus],
+                   'Carga del 01/12/2021 con cambios de 29/11/2021 y 30/11/2021 a solicitud de melvin.henriquez@mined.gob.sv' as [observacion]
+            FROM CARGA_SIGOB_PSICOMETRICA_PLAZAS_DOCENTES csppd
+            order by csppd.nip
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="RDPPsiIngrCalif.fromCARGA_SIGOB_PSICOMETRICA_PLAZAS_DOCENTES_ByNip"
+                        result-class="sv.gob.mined.projects.sgipd.fakeentities.RDPPsiIngrCalif">
+        <query>
+             <![CDATA[
+            SELECT csppd.nip,
+                   csppd.nombres + ' ' + csppd.apellidos                                                                      as [nombreCompleto],
+                   csppd.RESULTADO                                                                                            as [calificacion],
+                   CASE
+                       WHEN csppd.RESULTADO >= 6.00
+                           THEN 'APROBADO'
+                       ELSE 'REPROBADO' END                                                                                   as [estatus],
+                   'Carga del 01/12/2021 con cambios de 29/11/2021 y 30/11/2021 a solicitud de melvin.henriquez@mined.gob.sv' as [observacion]
+            FROM CARGA_SIGOB_PSICOMETRICA_PLAZAS_DOCENTES csppd
+            WHERE TRIM(csppd.nip) = TRIM(:nip)
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="Docente.findNoElegibles"
+                        result-class="sv.gob.mined.projects.sgipd.entities.Docente">
+        <query>
+             <![CDATA[
+            SELECT
+                d.*
+            FROM
+                Docentes d
+            where
+                    d.id_sigobsol_usuario not in (
+                    Select
+                        vedec.codigo_de_solicitante
+                    from
+                        SOL_MINED_SV_PROD.dbo.vExpediente_docentes_e2_cv_21_12_2021 vedec)
+               OR d.id_sigobsol_usuario in (6614,10309,15969,19159,19854,22206)
+            ]]>
+        </query>
+
+    </named-native-query>
+    <named-native-query name="DocenteResumen.findByPlaza"
+                        result-class="sv.gob.mined.projects.sgipd.entities.DocenteResumen">
+        <query>
+             <![CDATA[
+            select
+                dr.*
+            from
+                Docentes_resumen dr,
+                Docentes d
+            where
+                d.elegible = 1
+              and dr.id_sigobsol_usuario = d.id_sigobsol_usuario
+              and dr.nota_final >= 6.00
+              and dr.id_secuencial_plaza = :idSecuencial
+              and dr.id_tramite_aplic in (
+                select
+                    vedep.codigo_de_tramite
+                from
+                    SOL_MINED_SV_PROD.dbo.vExpediente_docentes_e2_plazas_21_12_2021 vedep)
+            ORDER by
+                dr.nota_final DESC
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="DocenteResumen.findByPlazaTop10"
+                        result-class="sv.gob.mined.projects.sgipd.entities.DocenteResumen">
+        <query>
+             <![CDATA[
+            select
+                dr.*
+            from
+                Docentes_resumen dr,
+                Docentes d
+            where
+                d.elegible = 1
+              and dr.id_sigobsol_usuario = d.id_sigobsol_usuario
+              and dr.nota_final >= 6.00
+              and dr.id_secuencial_plaza = :idSecuencial
+              and dr.id_tramite_aplic in (
+                select
+                    vedep.codigo_de_tramite
+                from
+                    SOL_MINED_SV_PROD.dbo.vExpediente_docentes_e2_plazas_21_12_2021 vedep)
+              and dr.posicion BETWEEN 1 AND 10
+            ORDER by
+                dr.nota_final DESC
+            ]]>
+        </query>
+
+    </named-native-query>
+
+    <named-native-query name="DocenteResumen.findByPlazaNonTop10"
+                        result-class="sv.gob.mined.projects.sgipd.entities.DocenteResumen">
+        <query>
+             <![CDATA[
+            select
+                dr.*
+            from
+                Docentes_resumen dr,
+                Docentes d
+            where
+                d.elegible = 1
+              and dr.id_sigobsol_usuario = d.id_sigobsol_usuario
+              and dr.id_secuencial_plaza = :idSecuencial
+              and dr.id_tramite_aplic in (
+                select
+                    vedep.codigo_de_tramite
+                from
+                    SOL_MINED_SV_PROD.dbo.vExpediente_docentes_e2_plazas_21_12_2021 vedep)
+              and dr.id_tramite_aplic NOT IN (SELECT dp.id_tramite_aplic FROM Docentes_plaza dp)
+            ORDER by
+                dr.nota_final DESC
+            ]]>
+        </query>
+
+    </named-native-query>
+
+</entity-mappings>

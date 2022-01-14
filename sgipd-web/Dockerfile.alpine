@@ -1,0 +1,17 @@
+FROM alpine:latest
+MAINTAINER Tadeo Rivera <xtecuan@protonmail.com>
+RUN apk --no-cache add --update openjdk11
+RUN apk --no-cache add --update util-linux pciutils usbutils coreutils binutils findutils grep
+RUN apk --no-cache add --update bash bash-doc tzdata nano  && rm -rf /var/cache/apk/*
+RUN cp /usr/share/zoneinfo/America/El_Salvador  /etc/localtime
+RUN echo "America/El_Salvador" > /etc/timezone
+RUN date
+RUN mkdir -p /opt/app
+EXPOSE 8080
+EXPOSE 8443
+COPY ./target/sgipd-web-bootable.jar /opt/app
+COPY ./bashrc /root/.bashrc
+RUN chmod a+x /root/.bashrc
+RUN chmod a+x /opt/app/sgipd-web-bootable.jar
+WORKDIR /opt/app
+CMD java -jar /opt/app/sgipd-web-bootable.jar -bjboss.bind.address:0.0.0.0 -Djboss.socket.binding.port-offset=903

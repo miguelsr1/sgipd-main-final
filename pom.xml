@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>sv.gob.mined.projects</groupId>
+    <artifactId>sgipd-main</artifactId>
+    <version>2.0.0.Final-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>SGIPD (WildFly Bootable JAR)</name>
+
+    <properties>
+        <!--version.bootable.jar>4.0.4.Final-SNAPSHOT</version.bootable.jar-->
+        <version.bootable.jar>4.0.3.Final</version.bootable.jar>
+        <version.keycloak>15.0.2</version.keycloak>
+        <version.wildfly>23.0.2.Final</version.wildfly>
+        <version.jkube>1.0.1</version.jkube>
+        <plugin.fork.embedded>true</plugin.fork.embedded>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <version.microprofile.bom>${version.wildfly}</version.microprofile.bom>
+        <version.server.bom>${version.wildfly}</version.server.bom>
+        <version.org.wildfly.arquillian>3.0.0.Final</version.org.wildfly.arquillian>
+        <version.org.jboss.arquillian.junit>1.6.0.Final</version.org.jboss.arquillian.junit>
+        <version.junit>4.13.1</version.junit>
+        <version.org.jboss.shrinkwrap.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap.shrinkwrap>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-api</artifactId>
+                <version>8.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- importing the jakartaee8-with-tools BOM adds specs and other useful artifacts as managed dependencies -->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-jakartaee8</artifactId>
+                <version>${version.server.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- importing the microprofile BOM adds MicroProfile specs -->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-microprofile</artifactId>
+                <version>${version.microprofile.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.arquillian</groupId>
+                <artifactId>wildfly-arquillian-container-bootable</artifactId>
+                <version>${version.org.wildfly.arquillian}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.junit</groupId>
+                <artifactId>arquillian-junit-container</artifactId>
+                <version>${version.org.jboss.arquillian.junit}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-api</artifactId>
+                <version>${version.org.jboss.shrinkwrap.shrinkwrap}</version>
+            </dependency>
+      
+            <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-impl-base</artifactId>
+                <version>${version.org.jboss.shrinkwrap.shrinkwrap}</version>
+            </dependency>
+        </dependencies>
+        
+    </dependencyManagement>
+
+    <modules>
+        <module>sgipd-web</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-jar-maven-plugin</artifactId>
+                    <version>${version.bootable.jar}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.jkube</groupId>
+                    <artifactId>openshift-maven-plugin</artifactId>
+                    <version>${version.jkube}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.3</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <version>2.0.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

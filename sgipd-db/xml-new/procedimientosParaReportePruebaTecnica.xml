@@ -1,0 +1,157 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+
+    <changeSet author="xtecuan" id="32" dbms="mssql" failOnError="true">
+        <createProcedure dbms="mssql" encoding="utf8" procedureName="obtenerEspecialidadByIdSigobSolUsuario" schemaName="dbo">
+
+            <![CDATA[
+            CREATE FUNCTION dbo.obtenerEspecialidadByIdSigobSolUsuario(
+                @id_sigobsol_usuario bigint
+            )
+            RETURNS varchar(255)
+            AS 
+            BEGIN
+                DECLARE @especialidad varchar(255);
+                select		
+                    TOP 1 @especialidad = e.nombre
+                from
+                    Docentes_estudios de,
+                    Especialidad e,
+                    Grado_academico ga,
+                    Instituciones_educativas ie
+                WHERE
+                    de.id_especialidad = e.id
+                    AND 
+                e.nombre <> 'No Definido'
+                    and 
+                de.id_grado_academico = ga.id_grado_academico
+                    and 
+                de.id_institucion_educativa = ie.id
+                    and
+                de.id_sigobsol_usuario = @id_sigobsol_usuario
+                ORDER BY de.indice_titulo 
+                
+            RETURN @especialidad;
+            END
+
+						 
+]]>
+        </createProcedure>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="33" dbms="mssql" failOnError="true">
+        <createProcedure dbms="mssql" encoding="utf8" procedureName="obtenerTituloByIdSigobSolUsuario" schemaName="dbo">
+
+            <![CDATA[
+
+            CREATE FUNCTION dbo.obtenerTituloByIdSigobSolUsuario(
+                @id_sigobsol_usuario bigint
+            )
+            RETURNS varchar(255)
+            AS 
+            BEGIN
+                DECLARE @titulo varchar(255);
+                select		
+                    TOP 1 @titulo = ga.nombre 
+                from
+                    Docentes_estudios de,
+                    Especialidad e,
+                    Grado_academico ga,
+                    Instituciones_educativas ie
+                WHERE
+                    de.id_especialidad = e.id
+                    AND 
+                e.nombre <> 'No Definido'
+                    and 
+                de.id_grado_academico = ga.id_grado_academico
+                    and 
+                de.id_institucion_educativa = ie.id
+                    and
+                de.id_sigobsol_usuario = @id_sigobsol_usuario
+                ORDER BY de.indice_titulo 
+                
+            RETURN @titulo;
+            END
+						 
+]]>
+        </createProcedure>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="34" dbms="mssql" failOnError="true">
+        <createProcedure dbms="mssql" encoding="utf8" procedureName="obtenerUniversidadByIdSigobSolUsuario" schemaName="dbo">
+
+            <![CDATA[
+
+            CREATE FUNCTION dbo.obtenerUniversidadByIdSigobSolUsuario(
+                @id_sigobsol_usuario bigint
+            )
+            RETURNS varchar(255)
+            AS 
+            BEGIN
+                DECLARE @universidad varchar(255);
+                select		
+                    TOP 1 @universidad = ie.nombre 
+                from
+                    Docentes_estudios de,
+                    Especialidad e,
+                    Grado_academico ga,
+                    Instituciones_educativas ie
+                WHERE
+                    de.id_especialidad = e.id
+                    AND 
+                e.nombre <> 'No Definido'
+                    and 
+                de.id_grado_academico = ga.id_grado_academico
+                    and 
+                de.id_institucion_educativa = ie.id
+                    and
+                de.id_sigobsol_usuario = @id_sigobsol_usuario
+                ORDER BY de.indice_titulo 
+                
+            RETURN @universidad;
+            END
+						 
+]]>
+        </createProcedure>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="35" dbms="mssql" failOnError="true">
+        <createProcedure dbms="mssql" encoding="utf8" procedureName="obtenerAnnioGraduacionByIdSigobSolUsuario" schemaName="dbo">
+
+            <![CDATA[
+            CREATE FUNCTION dbo.obtenerAnnioGraduacionByIdSigobSolUsuario(
+                @id_sigobsol_usuario bigint
+            )
+            RETURNS bigint
+            AS 
+            BEGIN
+                DECLARE @annio bigint;
+                select		
+                    TOP 1 @annio = de.annio_graduacion 
+                from
+                    Docentes_estudios de,
+                    Especialidad e,
+                    Grado_academico ga,
+                    Instituciones_educativas ie
+                WHERE
+                    de.id_especialidad = e.id
+                    AND 
+                e.nombre <> 'No Definido'
+                    and 
+                de.id_grado_academico = ga.id_grado_academico
+                    and 
+                de.id_institucion_educativa = ie.id
+                    and
+                de.id_sigobsol_usuario = @id_sigobsol_usuario
+                ORDER BY de.indice_titulo 
+                
+            RETURN @annio;
+            END
+
+						 
+]]>
+        </createProcedure>
+    </changeSet>
+
+</databaseChangeLog>

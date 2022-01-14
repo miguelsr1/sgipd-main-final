@@ -1,0 +1,37 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+<!--1 to 6.2-->		
+<include relativeToChangelogFile="true" file="sql/main.mssql.sql"/>		
+<!--7 dbtag stored-functions-7-->
+<include relativeToChangelogFile="true" file="xml/obtenerIdMunicipio.xml"/>
+<!--8-->
+<include relativeToChangelogFile="true" file="sql/updateIdMunicipio.sql"/>
+<!--9-->
+<include relativeToChangelogFile="true" file="sql/Docentes_concurso.sql"/>
+<!--10 to 10.1 dbtag data_profesores-1-->
+<include relativeToChangelogFile="true" file="xml/Docentes_concurso_Data.xml"/>
+<!--12-->
+<include relativeToChangelogFile="true" file="xml/Docentes_concurso_id_muni.xml"/>
+<!--13-->
+<include relativeToChangelogFile="true" file="sql/Grado_academico.sql"/>
+<!--14 dbtag data_profesores-3-->
+<include relativeToChangelogFile="true" file="xml/Grado_academico_Data.xml"/>
+<!--15-->
+<include relativeToChangelogFile="true" file="sql/Especialidad.sql"/>
+<!--16 dbtag data_profesores-4-->
+<include relativeToChangelogFile="true" file="xml/Especialidad_Data.xml"/>
+<!--17-->
+<include relativeToChangelogFile="true" file="sql/Institucion_educativa.sql"/>
+<!--18 dbtag data_profesores-5.1-->
+<include relativeToChangelogFile="true" file="xml/Institucion_educativa_Data.xml"/>
+<!--19-->
+<include relativeToChangelogFile="true" file="sql/Docentes_estudios.sql"/>
+<!--20 dbtag data_profesores-6-->
+<include relativeToChangelogFile="true" file="xml/Docentes_estudios_Data.xml"/>
+<!--21 dbtag data_profesores-7
+<include relativeToChangelogFile="true" file="xml/Docentes_estudios_FKs.xml"/>-->
+</databaseChangeLog>

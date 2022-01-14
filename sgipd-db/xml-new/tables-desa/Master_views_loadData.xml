@@ -1,0 +1,190 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+
+    <changeSet author="xtecuan" id="0.5" dbms="mssql" failOnError="false">
+        <comment>Insert data for Plazas2021_from_prod table</comment>
+        <loadUpdateData
+                primaryKey="ID_SECUENCIAL"
+                file="csv/Plazas2021_from_prod.csv"
+                tableName="Plazas2021_from_prod">
+            <column header="ID_SECUENCIAL" name="ID_SECUENCIAL" type="numeric"/>
+            <column header="COD_INFRA" name="COD_INFRA" type="numeric"/>
+            <column header="NOMBRE_CENTRO_EDUCATIVO" name="NOMBRE_CENTRO_EDUCATIVO" type="string"/>
+            <column header="Departamento" name="Departamento" type="string"/>
+            <column header="Municipio" name="Municipio" type="string"/>
+            <column header="Nivel_Educativo" name="Nivel_Educativo" type="string"/>
+            <column header="Turno" name="Turno" type="string"/>
+            <column header="Especialidad" name="Especialidad" type="string"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="0.6" dbms="mssql" failOnError="false">
+        <sql dbms="mssql">
+            <!-- Please copy your SQL Code inside CDATA TAG -->
+            <![CDATA[
+ALTER TABLE docentes_cv_all_rows ALTER COLUMN nip varchar(25) COLLATE Modern_Spanish_CI_AS NULL;
+ALTER TABLE docentes_cv_all_rows ALTER COLUMN dui varchar(120) COLLATE Modern_Spanish_CI_AS NULL;
+
+			]]>
+        </sql>
+    </changeSet>
+
+    <!--<changeSet author="xtecuan" id="0.7" dbms="mssql" failOnError="false">
+        <comment>Insert data for docentes_cv_all_rows table</comment>
+        <loadUpdateData
+                primaryKey="codigo_de_tramite"
+                file="csv/docentes_cv_all_rows.csv"
+                tableName="docentes_cv_all_rows">
+            <column header="codigo_de_tramite" name="codigo_de_tramite" type="numeric"/>
+            <column header="codigo_de_solicitante" name="codigo_de_solicitante" type="numeric"/>
+            <column header="codigo_de_tipo_de_tramite" name="codigo_de_tipo_de_tramite" type="numeric"/>
+            <column header="nombres" name="nombres" type="string"/>
+            <column header="apellidos" name="apellidos" type="string"/>
+            <column header="direccion_actual_de_residencia" name="direccion_actual_de_residencia" type="string"/>
+            <column header="departamento" name="departamento" type="string"/>
+            <column header="municipio" name="municipio" type="string"/>
+            <column header="nip" name="nip" type="string"/>
+            <column header="dui" name="dui" type="string"/>
+            <column header="correo" name="correo" type="string"/>
+            <column header="nivel_docente" name="nivel_docente" type="string"/>
+            <column header="telefono_fijo" name="telefono_fijo" type="string"/>
+            <column header="telefono_celular" name="telefono_celular" type="string"/>
+            <column header="discapacidad" name="discapacidad" type="string"/>
+
+            <column header="grado_academico_1" name="grado_academico_1" type="string"/>
+            <column header="especialidad_1" name="especialidad_1" type="string"/>
+            <column header="institucion_educativa_1" name="institucion_educativa_1" type="string"/>
+            <column header="annio_de_graduacion_1" name="annio_de_graduacion_1" type="string"/>
+
+            <column header="grado_academico_2" name="grado_academico_2" type="string"/>
+            <column header="especialidad_2" name="especialidad_2" type="string"/>
+            <column header="institucion_educativa_2" name="institucion_educativa_2" type="string"/>
+            <column header="annio_de_graduacion_2" name="annio_de_graduacion_2" type="string"/>
+
+            <column header="grado_academico_3" name="grado_academico_3" type="string"/>
+            <column header="especialidad_3" name="especialidad_3" type="string"/>
+            <column header="institucion_educativa_3" name="institucion_educativa_3" type="string"/>
+            <column header="annio_de_graduacion_3" name="annio_de_graduacion_3" type="string"/>
+
+            <column header="grado_academico_4" name="grado_academico_4" type="string"/>
+            <column header="especialidad_4" name="especialidad_4" type="string"/>
+            <column header="institucion_educativa_4" name="institucion_educativa_4" type="string"/>
+            <column header="annio_de_graduacion_4" name="annio_de_graduacion_4" type="string"/>
+
+            <column header="nombre_capacitacion_1" name="nombre_capacitacion_1" type="string"/>
+            <column header="cantidad_horas_1" name="cantidad_horas_1" type="numeric"/>
+            <column header="Institucion_1" name="Institucion_1" type="string"/>
+            <column header="fecha_inicio_1" name="fecha_inicio_1" type="string"/>
+            <column header="fecha_finalizacion_1" name="fecha_finalizacion_1" type="string"/>
+            <column header="Pais_1" name="Pais_1" type="string"/>
+            <column header="diploma_obtenido_1" name="diploma_obtenido_1" type="string"/>
+
+            <column header="nombre_capacitacion_2" name="nombre_capacitacion_2" type="string"/>
+            <column header="cantidad_horas_2" name="cantidad_horas_2" type="numeric"/>
+            <column header="Institucion_2" name="Institucion_2" type="string"/>
+            <column header="fecha_inicio_2" name="fecha_inicio_2" type="string"/>
+            <column header="fecha_finalizacion_2" name="fecha_finalizacion_2" type="string"/>
+            <column header="Pais_2" name="Pais_2" type="string"/>
+            <column header="diploma_obtenido_2" name="diploma_obtenido_2" type="string"/>
+
+            <column header="nombre_capacitacion_3" name="nombre_capacitacion_3" type="string"/>
+            <column header="cantidad_horas_3" name="cantidad_horas_3" type="numeric"/>
+            <column header="Institucion_3" name="Institucion_3" type="string"/>
+            <column header="fecha_inicio_3" name="fecha_inicio_3" type="string"/>
+            <column header="fecha_finalizacion_3" name="fecha_finalizacion_3" type="string"/>
+            <column header="Pais_3" name="Pais_3" type="string"/>
+            <column header="diploma_obtenido_3" name="diploma_obtenido_3" type="string"/>
+
+            <column header="nombre_capacitacion_4" name="nombre_capacitacion_4" type="string"/>
+            <column header="cantidad_horas_4" name="cantidad_horas_4" type="numeric"/>
+            <column header="Institucion_4" name="Institucion_4" type="string"/>
+            <column header="fecha_inicio_4" name="fecha_inicio_4" type="string"/>
+            <column header="fecha_finalizacion_4" name="fecha_finalizacion_4" type="string"/>
+            <column header="Pais_4" name="Pais_4" type="string"/>
+            <column header="diploma_obtenido_4" name="diploma_obtenido_4" type="string"/>
+
+            <column header="nombre_capacitacion_5" name="nombre_capacitacion_5" type="string"/>
+            <column header="cantidad_horas_5" name="cantidad_horas_5" type="numeric"/>
+            <column header="Institucion_5" name="Institucion_5" type="string"/>
+            <column header="fecha_inicio_5" name="fecha_inicio_5" type="string"/>
+            <column header="fecha_finalizacion_5" name="fecha_finalizacion_5" type="string"/>
+            <column header="Pais_5" name="Pais_5" type="string"/>
+            <column header="diploma_obtenido_5" name="diploma_obtenido_5" type="string"/>
+
+            <column header="institucion_educativa_nacional_1" name="institucion_educativa_nacional_1" type="string"/>
+            <column header="institucion_educativa_extranjero_1" name="institucion_educativa_extranjero_1"
+                    type="numeric"/>
+            <column header="cantidad_de_annios_1" name="cantidad_de_annios_1" type="numeric"/>
+            <column header="departamento_1" name="departamento_1" type="string"/>
+            <column header="municipio_1" name="municipio_1" type="string"/>
+            <column header="desde_1" name="desde_1" type="string"/>
+            <column header="hasta_1" name="hasta_1" type="string"/>
+            <column header="nombramiento_1" name="nombramiento_1" type="string"/>
+            <column header="sector_1" name="sector_1" type="string"/>
+
+            <column header="institucion_educativa_nacional_2" name="institucion_educativa_nacional_2" type="string"/>
+            <column header="institucion_educativa_extranjero_2" name="institucion_educativa_extranjero_2"
+                    type="numeric"/>
+            <column header="cantidad_de_annios_2" name="cantidad_de_annios_2" type="numeric"/>
+            <column header="departamento_2" name="departamento_2" type="string"/>
+            <column header="municipio_2" name="municipio_2" type="string"/>
+            <column header="desde_2" name="desde_2" type="string"/>
+            <column header="hasta_2" name="hasta_2" type="string"/>
+            <column header="nombramiento_2" name="nombramiento_2" type="string"/>
+            <column header="sector_2" name="sector_2" type="string"/>
+
+            <column header="institucion_educativa_nacional_3" name="institucion_educativa_nacional_3" type="string"/>
+            <column header="institucion_educativa_extranjero_3" name="institucion_educativa_extranjero_3"
+                    type="numeric"/>
+            <column header="cantidad_de_annios_3" name="cantidad_de_annios_3" type="numeric"/>
+            <column header="departamento_3" name="departamento_3" type="string"/>
+            <column header="municipio_3" name="municipio_3" type="string"/>
+            <column header="desde_3" name="desde_3" type="string"/>
+            <column header="hasta_3" name="hasta_3" type="string"/>
+            <column header="nombramiento_3" name="nombramiento_3" type="string"/>
+            <column header="sector_3" name="sector_3" type="string"/>
+
+            <column header="institucion_educativa_nacional_4" name="institucion_educativa_nacional_4" type="string"/>
+            <column header="institucion_educativa_extranjero_4" name="institucion_educativa_extranjero_4"
+                    type="numeric"/>
+            <column header="cantidad_de_annios_4" name="cantidad_de_annios_4" type="numeric"/>
+            <column header="departamento_4" name="departamento_4" type="string"/>
+            <column header="municipio_4" name="municipio_4" type="string"/>
+            <column header="desde_4" name="desde_4" type="string"/>
+            <column header="hasta_4" name="hasta_4" type="string"/>
+            <column header="nombramiento_4" name="nombramiento_4" type="string"/>
+            <column header="sector_4" name="sector_4" type="string"/>
+
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="0.8" dbms="mssql" failOnError="false">
+        <comment>Insert data for docentes_aplicaciones_from_prod table</comment>
+        <loadUpdateData
+                primaryKey="codigo_de_tramite"
+                file="csv/docentes_aplicaciones_from_prod.csv"
+                tableName="docentes_aplicaciones_from_prod">
+
+            <column header="codigo_de_tramite" name="codigo_de_tramite" type="numeric"/>
+            <column header="codigo_de_solicitante" name="codigo_de_solicitante" type="numeric"/>
+            <column header="codigo_de_tipo_de_tramite" name="codigo_de_tipo_de_tramite" type="numeric"/>
+            <column header="id_de_plaza" name="id_de_plaza" type="numeric"/>
+            <column header="nombre_del_CE" name="nombre_del_CE" type="string"/>
+            <column header="departamento" name="departamento" type="string"/>
+            <column header="municipio" name="municipio" type="string"/>
+            <column header="nivel_educativo" name="nivel_educativo" type="string"/>
+            <column header="turno" name="turno" type="string"/>
+            <column header="especialidad" name="especialidad" type="string"/>
+        </loadUpdateData>
+    </changeSet>-->
+
+    <changeSet id="Master_tables_loadData" author="xtecuan">
+        <tagDatabase tag="Master_tables_loadData"/>
+    </changeSet>
+
+
+</databaseChangeLog>

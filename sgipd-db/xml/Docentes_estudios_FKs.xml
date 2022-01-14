@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="21" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+ALTER TABLE Docentes_estudios ADD CONSTRAINT Docentes_estudios_FK_Docentes_concurso FOREIGN KEY (id_sigobsol_usuario) REFERENCES Docentes_concurso(id_sigobsol_usuario);
+ALTER TABLE Docentes_estudios ADD CONSTRAINT Docentes_estudios_FK_Grado_academico FOREIGN KEY (id_grado_academico) REFERENCES Grado_academico(id_grado_academico);
+ALTER TABLE Docentes_estudios ADD CONSTRAINT Docentes_estudios_FK_Institucion_educativo FOREIGN KEY (id_institucion_educativa) REFERENCES Institucion_educativa(id);
+ALTER TABLE Docentes_estudios ADD CONSTRAINT Docentes_estudios_FK_Especialidad FOREIGN KEY (id_especialidad) REFERENCES Especialidad(id);
+
+			]]>
+		</sql>
+	</changeSet>
+
+   <changeSet id="data_profesores-7" author="xtecuan">
+    <tagDatabase tag="data-profesores-7" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

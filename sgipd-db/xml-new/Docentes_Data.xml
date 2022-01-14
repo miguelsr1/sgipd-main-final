@@ -1,0 +1,120 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+    <changeSet author="xtecuan" id="10.1" dbms="mssql" failOnError="false">
+        <sql dbms="mssql">
+            <!-- Please copy your SQL Code inside CDATA TAG -->
+            <![CDATA[
+
+ALTER TABLE Docentes ALTER COLUMN nip varchar(35) COLLATE Modern_Spanish_CI_AS NOT NULL;
+ALTER TABLE Docentes ALTER COLUMN dui varchar(125) COLLATE Modern_Spanish_CI_AS NOT NULL;
+
+
+			]]>
+        </sql>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="10.2" dbms="mssql" failOnError="false">
+        <sql dbms="mssql">
+            <!-- Please copy your SQL Code inside CDATA TAG -->
+            <![CDATA[
+
+	ALTER TABLE Docentes ALTER COLUMN dui varchar(125) COLLATE Modern_Spanish_CI_AS NULL;
+
+
+			]]>
+        </sql>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="10.3" dbms="mssql" failOnError="false">
+        <sql dbms="mssql">
+            <!-- Please copy your SQL Code inside CDATA TAG -->
+            <![CDATA[
+
+	ALTER TABLE Docentes ALTER COLUMN nip varchar(35) COLLATE Modern_Spanish_CI_AS NULL;
+
+
+			]]>
+        </sql>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="10.4" dbms="mssql" failOnError="false">
+        <sql dbms="mssql">
+            <!-- Please copy your SQL Code inside CDATA TAG -->
+            <![CDATA[
+
+	ALTER TABLE Docentes ALTER COLUMN correo_e varchar(100) COLLATE Modern_Spanish_CI_AS NULL;
+
+
+			]]>
+        </sql>
+    </changeSet>
+
+
+
+
+    <changeSet author="xtecuan" id="11" dbms="mssql" failOnError="false">
+        <sql dbms="mssql">
+            <!-- Please copy your SQL Code inside CDATA TAG -->
+            <![CDATA[
+INSERT
+	INTO
+	Docentes (id_sigobsol_usuario,
+	id_tramite,
+	tipo_tramite,
+	nombres,
+	apellidos,
+	direccion_postal,
+	departamento,
+	municipio,
+	nip,
+	dui,
+	correo_e,
+	nivel_docente,
+	tel_fijo,
+	tel_celular,
+	discapacidad,
+	id_municipio)
+select
+	d.codigo_de_solicitante as [id_sigobsol_usuario],
+	d.codigo_de_tramite as [id_tramite],
+	d.codigo_de_tipo_de_tramite as [tipo_tramite],
+	d.nombres as [nombres],
+	d.apellidos as [apellidos],
+	d.direccion_actual_de_residencia as [direccion_postal],
+	d.departamento as [departamento],
+	d.municipio as [municipio],
+	d.nip as [nip],
+	d.dui as [dui],
+	d.correo as [correo_e],
+	d.nivel_docente as [nivel_docente],
+	d.telefono_fijo as [tel_fijo],
+	d.telefono_celular as [tel_celular],
+	d.discapacidad as [discapacidad],
+	dbo.obtenerIdMunicipio(d.municipio,
+	d.departamento) as [id_municipio]
+FROM
+	docentes_cv_from_prod d
+WHERE
+	d.codigo_de_solicitante NOT IN (
+	SELECT
+		d.codigo_de_solicitante
+	FROM
+		docentes_cv_from_prod d
+	GROUP BY
+		d.codigo_de_solicitante
+	HAVING
+		count(d.codigo_de_solicitante)>= 2
+);
+
+			]]>
+        </sql>
+    </changeSet>
+    <changeSet id="004-Docentes" author="xtecuan">
+        <tagDatabase tag="004-Docentes"/>
+    </changeSet>
+
+
+</databaseChangeLog>

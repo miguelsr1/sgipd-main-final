@@ -1,0 +1,1 @@
+select d.nip , d.tel_celular  FROM Docentes d

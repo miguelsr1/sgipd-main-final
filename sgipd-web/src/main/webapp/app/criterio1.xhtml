@@ -1,0 +1,182 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:define name="content">
+
+        <div style="margin: auto; width: 95%; border: 3px solid #f9fafb; padding: 10px;">
+            <div class="p-col-12">
+
+                <div class="card ui-fluid" jsf:id="divFiltro">
+                    <h4><h:outputLabel value="#{bundle.criterio1_title_panel}"/></h4>
+                    <br/>
+
+                    <div class="card">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-3 p-lg-3">
+                                <div class="box">
+                                    <p:outputLabel for="departamento" styleClass="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                        Departamento:
+                                    </p:outputLabel>
+
+                                    <div class="p-col-12 p-md-10">
+                                        <p:selectOneMenu id="departamento"
+                                                         value="#{criterio1Bean.idDepartamento}">
+                                            <p:ajax event="change" listener="#{criterio1Bean.cargarMunicipios()}"
+                                                    process="@this,municipio"
+                                                    update="municipio idCentroEducativo"/>
+                                            <f:selectItem itemLabel="Seleccione un valor" noSelectionOption="true"/>
+                                            <f:selectItems value="#{criterio1Bean.departamentos}" var="dep"
+                                                           itemValue="#{dep.id}" itemLabel="#{dep.nombre}"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-3 p-lg-3">
+                                <div class="box">
+                                    <p:outputLabel for="municipio" styleClass="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                        Municipio:
+                                    </p:outputLabel>
+
+                                    <div class="p-col-12 p-md-10">
+                                        <p:selectOneMenu id="municipio" value="#{criterio1Bean.idMunicipio}">
+                                            <p:ajax event="change"
+                                                    listener="#{criterio1Bean.cargarCentrosEducativos() }"
+                                                    process="@this,idCentroEducativo"
+                                                    update="idCentroEducativo"/>
+                                            <f:selectItem itemLabel="Seleccione un valor" noSelectionOption="true"/>
+                                            <f:selectItems value="#{criterio1Bean.municipios}" var="mun"
+                                                           itemValue="#{mun.id}" itemLabel="#{mun.nombre}"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="box">
+                                    <p:outputLabel for="idCentroEducativo"
+                                                   styleClass="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                        Centro educativo:
+                                    </p:outputLabel>
+
+                                    <div class="p-col-12 p-md-10">
+                                        <p:selectOneMenu id="idCentroEducativo"
+                                                         value="#{criterio1Bean.idCentroEducativo}">
+                                            <p:ajax event="change" listener="#{criterio1Bean.cargarSeleccionado() }"
+                                                    process="@this,idCentroEducativo"
+                                                    update="idCentroEducativo"/>
+                                            <f:selectItem itemLabel="Seleccione un valor" noSelectionOption="true"/>
+                                            <f:selectItems value="#{criterio1Bean.centrosEducativos}" var="edu"
+                                                           itemValue="#{edu.codinfra}" itemLabel="#{edu.nombrece}"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-col-6 p-md-6 p-lg-6" style="margin-top: 1em">
+                                <div class="box">
+                                    <p:commandLink id="descargarPrueba" action="#{criterio1Bean.downloadExcelFile()}"
+                                                   style="margin-right:20px;" ajax="false">
+                                        <h:outputText value="Descargar Formato de subida de calificaciones"/>
+                                    </p:commandLink>
+                                </div>
+                            </div>
+
+                            <div class="p-col-6 p-md-6 p-lg-6" style="margin-top: 1em">
+                                <div class="box">
+                                    <p:link rendered="false" value="Editar Nota">
+                                        <f:param name="productId" value="10"/>
+                                    </p:link>
+                                </div>
+                            </div>
+
+                            <div class="p-col-12" style="margin-top: 1em">
+                                <div class="box">
+                                    <p:outputLabel styleClass="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                        <b>Seleccione el archivo con las calificaciones:</b>
+                                    </p:outputLabel>
+
+                                    <h:form id="ffileupload">
+
+
+                                        <p:fileUpload id="xlsxFile"
+                                                      mode="simple"
+                                                      skinSimple="true"
+                                                      auto="true"
+                                                      process="@this" update="messages,:fcalificaciones:tcalificaciones"
+                                                      listener="#{criterio1Bean.handleFileUpload}"
+                                                      sizeLimit="104857600" allowTypes="/(\.|\/)(xlsx)$/"
+                                                      invalidSizeMessage="Maximum file size allowed is 10 MB"
+                                                      invalidFileMessage="only xlsx is allowed"
+                                        />
+
+                                    </h:form>
+
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="margin-top: 1em">
+                                <div class="box">
+                                    <p:outputLabel styleClass="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                        <b>Calificaciones Obtenidas del archivo:</b>
+                                    </p:outputLabel>
+
+                                    <h:form id="fcalificaciones">
+                                        <p:dataTable id="tcalificaciones" var="cali"
+                                                     value="#{criterio1Bean.listadoCalificaciones}" rows="10"
+                                                     paginator="true"
+                                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                                                     scrollable="true" scrollHeight="375" scrollWidth="100%">
+                                            <p:column headerText="idTramite">
+                                                <h:outputText value="#{cali.idTramite}"/>
+                                            </p:column>
+
+                                            <p:column headerText="Nombre Completo">
+                                                <h:outputText value="#{cali.nombreCompleto}"/>
+                                            </p:column>
+
+                                            <p:column headerText="calificacion">
+                                                <h:outputText value="#{cali.calificacion}"/>
+                                            </p:column>
+                                            <p:column headerText="estatus">
+                                                <h:outputText value="#{cali.estatus}"/>
+                                            </p:column>
+                                            <p:column headerText="observacion">
+                                                <h:outputText value="#{cali.observacion}"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="p-field p-grid">
+                        <div class="p-col-3 p-md-3">
+
+
+                            <p:commandButton value="Guardar Calificaciones" icon="pi pi-save" ajax="true"
+                                             action="#{criterio1Bean.readAndSaveCalificaciones()}"
+                                             styleClass="p-col-3 p-mb-2 p-md-2 p-mb-md-0"
+                                             update="@this,messages,:fcalificaciones:tcalificaciones,:ffileupload,departamento,municipio,idCentroEducativo"/>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </ui:define>
+</ui:composition>
+
+

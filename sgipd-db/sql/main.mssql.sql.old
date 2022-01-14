@@ -1,0 +1,32 @@
+-- liquibase formatted sql changeLogId:6023a250-9bed-49d7-ba68-0396a40dc439
+
+--changeset xtecuan:1
+--
+--Database: mssql
+CREATE TABLE SGIDTPVD.dbo.envio_datos_SIGOBSOL (
+                                                   correlativo int IDENTITY(1,1) NOT NULL,
+                                                   nip int NOT NULL,
+                                                   dui_pasaporte varchar(20) COLLATE Modern_Spanish_CI_AS NOT NULL,
+                                                   apellidos varchar(255) COLLATE Modern_Spanish_CI_AS NOT NULL,
+                                                   nombres varchar(255) COLLATE Modern_Spanish_CI_AS NOT NULL,
+                                                   especialidad varchar(255) COLLATE Modern_Spanish_CI_AS NOT NULL,
+                                                   nota_formacion_general decimal(3,2) NULL,
+                                                   nota_especialidad decimal(3,2) NULL,
+                                                   nota_final decimal(3,2) NULL,
+                                                   estatus varchar(15) COLLATE Modern_Spanish_CI_AS NULL,
+                                                   CONSTRAINT PK_ENVIO PRIMARY KEY (correlativo)
+);
+
+CREATE TABLE SGIDTPVD.dbo.recepcion_datos_sistemaGestionInterno (
+                                                                    correlativo int IDENTITY(1,1) NOT NULL,
+                                                                    nip int NOT NULL,
+                                                                    dui_pasaporte varchar(20) COLLATE Modern_Spanish_CI_AS NOT NULL,
+                                                                    apellidos varchar(255) COLLATE Modern_Spanish_CI_AS NOT NULL,
+                                                                    nombres varchar(255) COLLATE Modern_Spanish_CI_AS NOT NULL,
+                                                                    especialidad varchar(255) COLLATE Modern_Spanish_CI_AS NOT NULL,
+                                                                    correo_electronico varchar(100) COLLATE Modern_Spanish_CI_AS NOT NULL,
+                                                                    whatsapp int NOT NULL,
+                                                                    CONSTRAINT PK_RECEPCION PRIMARY KEY (correlativo)
+);
+
+

@@ -1,0 +1,80 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+
+    <changeSet author="xtecuan" id="41" dbms="mssql" failOnError="true">
+        <createProcedure dbms="mssql" encoding="utf8" procedureName="obtenerSiEsInterinoByCodigoTramite"
+                         schemaName="dbo">
+
+            <![CDATA[
+
+CREATE FUNCTION [dbo].[obtenerSiEsInterinoByCodigoTramite](@codigoTramite bigint)
+RETURNS INT
+AS
+BEGIN
+	DECLARE @interino INT;
+
+SELECT @interino = ISNULL(da.respactinterino_asp,0)  FROM SOL_MINED_SV_PROD.dbo.datos_adicionales_6 da
+WHERE da.codigo_tramite = @codigoTramite
+
+
+RETURN @interino;
+END
+						 
+]]>
+        </createProcedure>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="42" dbms="mssql" failOnError="true">
+        <createProcedure dbms="mssql" encoding="utf8" procedureName="obtenerSexoByCodigoTramite"
+                         schemaName="dbo">
+
+            <![CDATA[
+
+CREATE FUNCTION [dbo].[obtenerSexoByCodigoTramite](@codigoTramite bigint)
+RETURNS varchar(20)
+AS
+BEGIN
+	DECLARE @sexo varchar(20);
+
+SELECT @sexo = ISNULL(da.sexo_asp,'')  FROM SOL_MINED_SV_PROD.dbo.datos_adicionales_6 da
+WHERE da.codigo_tramite = @codigoTramite
+
+
+RETURN @sexo;
+END
+
+]]>
+        </createProcedure>
+    </changeSet>
+
+    <changeSet author="xtecuan" id="43" dbms="mssql" failOnError="true">
+        <createProcedure dbms="mssql" encoding="utf8" procedureName="obtenerSiEsInterinoByCodigo2String"
+                         schemaName="dbo">
+
+            <![CDATA[
+
+CREATE FUNCTION [dbo].[obtenerSiEsInterinoByCodigo2String](@codigoTramite bigint)
+RETURNS varchar(20)
+AS
+BEGIN
+	DECLARE @interino varchar(20);
+
+IF dbo.obtenerSiEsInterinoByCodigoTramite(@codigoTramite)=1
+SET @interino = 'Interino'
+ELSE
+SET @interino = 'No Interino'
+
+
+RETURN @interino;
+END
+
+]]>
+        </createProcedure>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="9.2" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+INSERT INTO Tipo_tramite (id_tipo_tramite, nombre_tramite) VALUES(6, N'Ingreso Curriculum Vitae');
+INSERT INTO Tipo_tramite (id_tipo_tramite, nombre_tramite) VALUES(7, N'Aplicación a Plaza Docente');
+
+			]]>
+		</sql>
+	</changeSet>
+	
+   <changeSet id="0031-Tipo_tramite" author="xtecuan">
+    <tagDatabase tag="0031-Tipo_tramite" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

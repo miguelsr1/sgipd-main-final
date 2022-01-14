@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+<changeSet author="xtecuan" id="16.9"  dbms="mssql" failOnError="true">
+                <createProcedure 
+                                dbms="mssql"
+                                encoding="utf8"
+                                procedureName="obtenerIdGradoAcademico"
+                                schemaName="dbo">
+				
+<![CDATA[
+
+CREATE FUNCTION [dbo].[obtenerIdGradoAcademico](@nombreGrado varchar(255))  
+RETURNS bigint   
+AS
+BEGIN
+	DECLARE @id_grado bigint;
+
+SELECT
+	@id_grado = ga.id_grado_academico 
+FROM
+	Grado_academico ga 
+WHERE 
+	ga.nombre = @nombreGrado
+	
+
+IF (@id_grado IS NULL)
+SELECT
+	@id_grado = ga.id_grado_academico 
+FROM
+	Grado_academico ga 
+WHERE 
+	ga.nombre = 'No Definido'
+	
+
+RETURN @id_grado;
+END
+						 
+]]>
+                </createProcedure>
+   </changeSet>	
+	
+</databaseChangeLog>

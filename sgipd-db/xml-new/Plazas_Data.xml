@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="13" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+INSERT INTO Plazas (id_secuencial, codinfra, 
+                                  nivel_educativo, turno, especialidad)
+select
+	pfp.ID_SECUENCIAL as [id_secuencial],
+	pfp.COD_INFRA as [codinfra],
+	pfp.Nivel_Educativo as [nivel_educativo],
+	pfp.Turno as [turno],
+	pfp.Especialidad as [especialidad]
+from
+	Plazas2021_from_prod pfp ;
+
+
+			]]>
+		</sql>
+	</changeSet>	
+   <changeSet id="005-Plazas" author="xtecuan">
+    <tagDatabase tag="005-Plazas" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

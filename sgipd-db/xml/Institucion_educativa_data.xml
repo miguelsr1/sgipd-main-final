@@ -1,0 +1,95 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="18" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+INSERT INTO Institucion_educativa(nombre) values('Alianza Francesa');
+INSERT INTO Institucion_educativa(nombre) values('Centro Internacional de Programación de Computadoras');
+INSERT INTO Institucion_educativa(nombre) values('Centro Universitario Regional de Cabañas');
+INSERT INTO Institucion_educativa(nombre) values('Escuela Especializada en Ingeniería ITCA-FEPADE - regional La Paz');
+INSERT INTO Institucion_educativa(nombre) values('Escuela Especializada en Ingeniería ITCA-FEPADE - regional La Unión');
+INSERT INTO Institucion_educativa(nombre) values('Escuela Especializada en Ingeniería ITCA-FEPADE - regional San Miguel');
+INSERT INTO Institucion_educativa(nombre) values('Escuela Especializada en Ingeniería ITCA-FEPADE - regional Santa Ana');
+INSERT INTO Institucion_educativa(nombre) values('Escuela Especializada en Ingeniería ITCA-FEPADE');
+INSERT INTO Institucion_educativa(nombre) values('Escuela Normal Superior de El Salvador');
+INSERT INTO Institucion_educativa(nombre) values('Escuela Superior de Educación Física');
+INSERT INTO Institucion_educativa(nombre) values('Escuela Superior Franciscana Especializada/AGAPE');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Especializado de Educación Superior Academia Nacional de Seguridad Pública');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Especializado de Educación Superior Ana Guerra de Jesús');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Especializado de Educación Superior El Espíritu Santo');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Especializado de Nivel Superior Centro Cultural Salvadoreño Americano');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Especializado de Profesionales de la Salud - regional San Miguel');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Especializado de Profesionales de la Salud - regional Santa Ana');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Superior de Economía y Administración de Empresas');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Técnico Especializado de Educación Superior de Profesorado de la Salud de El Salvador - San Miguel');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Técnico Especializado de Educación Superior de Profesorado de la Salud de El Salvador');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Tecnológico Americano de Educación Superior');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Tecnológico Centroamericano');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Tecnológico de Chalatenango');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Tecnológico de Sonsonate');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Tecnológico de Usulután');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Tecnológico ITCA San Miguel');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Tecnológico ITCA Santa Ana');
+INSERT INTO Institucion_educativa(nombre) values('Instituto Tecnológico ITCA Zacatecoluca');
+INSERT INTO Institucion_educativa(nombre) values('Ministerio de Educación, Ciencia y Tecnología');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Albert Einstein');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Autónoma de Santa Ana');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Capitán General Gerardo Barrios - regional Usulután');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Capitán General Gerardo Barrios');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Católica de El Salvador - Ilobasco');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Católica de El Salvador');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Católica de Occidente');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Centroamericana José Simeón Cañas');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Cristiana de las Asambleas de Dios');
+INSERT INTO Institucion_educativa(nombre) values('Universidad de Administración de Negocios');
+INSERT INTO Institucion_educativa(nombre) values('Universidad de El Salvador - San Miguel');
+INSERT INTO Institucion_educativa(nombre) values('Universidad de El Salvador - San Vicente');
+INSERT INTO Institucion_educativa(nombre) values('Universidad de El Salvador- Santa Ana');
+INSERT INTO Institucion_educativa(nombre) values('Universidad de El Salvador');
+INSERT INTO Institucion_educativa(nombre) values('Universidad de Oriente');
+INSERT INTO Institucion_educativa(nombre) values('Universidad de Sonsonate');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Doctor Andrés Bello - regional Chalatenango');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Doctor Andrés Bello - regional San Miguel');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Doctor Andrés Bello - regional Sonsonate');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Doctor Andrés Bello');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Doctor Manuel Luis Escamilla');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Don Bosco');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Evangélica de El Salvador');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Francisco Gavidia');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Luterana Salvadoreña - regional Cabañas');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Luterana Salvadoreña');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Modular Abierta - regional San Miguel');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Modular Abierta - regional Santa Ana');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Modular Abierta - regional Sonsonate');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Modular Abierta - regional Usulután');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Modular Abierta');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Monseñor Óscar Arnulfo Romero');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Nueva San Salvador');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Occidental de El Salvador');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Panamericana - regional Ahuachapán');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Panamericana - regional San Vicente');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Panamericana');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Pedagógica de El Salvador');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Politécnica de El Salvador');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Salvadoreña Alberto Masferrer');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Salvadoreña Isaac Newton');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Técnica Latinoamericana');
+INSERT INTO Institucion_educativa(nombre) values('Universidad Tecnológica de El Salvador');
+INSERT INTO Institucion_educativa(nombre) values('No Definida');
+			]]>
+		</sql>
+	</changeSet>
+
+   <changeSet id="data_profesores-5.1" author="xtecuan">
+    <tagDatabase tag="data-profesores-5.1" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

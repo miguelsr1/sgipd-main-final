@@ -1,0 +1,15 @@
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
+    <datasource jndi-name="java:jboss/datasources/sgipdDS"
+                pool-name="sgipd-pool"
+                enabled="true"
+                use-java-context="true">
+        <connection-url>jdbc:sqlserver://sgipd-mined.database.windows.net:1433;databaseName=SGIPD_DEV</connection-url>
+        <driver>mssqlserver</driver>
+        <security>
+            <user-name>JulianRivera@sgipd-mined</user-name>
+            <password>jup1t3r*2021</password>
+        </security>
+    </datasource>
+</datasources>

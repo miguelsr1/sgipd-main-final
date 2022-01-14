@@ -1,0 +1,8 @@
+#Adds a datasource with overloadable parameters using system environment variables
+data-source add \
+  --name=sigobsol-pool \
+  --jndi-name=java:jboss/datasources/sigobsolDS \
+  --driver-name=mssqlserver \
+  --connection-url=jdbc:sqlserver://192.168.19.62:1433;databaseName=SOL_MINED_SV_PROD \
+  --user-name=JulianRivera \
+  --password=jup1t3r*2021

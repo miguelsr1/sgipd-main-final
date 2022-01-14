@@ -1,0 +1,66 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="15" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+
+INSERT INTO Instituciones_educativas (nombre, tipo_institucion)
+select
+	DISTINCT instituciones.ga, 'Universitaria'
+from
+	(
+	select
+		DISTINCT dc.institucion_educativa_1 as ga
+	FROM
+		docentes_cv_all_rows dc
+	where
+		dc.institucion_educativa_1 is not NULL AND dc.institucion_educativa_1 <> ''
+union ALL
+	select
+		DISTINCT dc.institucion_educativa_2 as ga
+	FROM
+		docentes_cv_all_rows dc
+	where
+		dc.institucion_educativa_2 is not NULL AND dc.institucion_educativa_2 <> ''
+union ALL
+	select
+		DISTINCT dc.institucion_educativa_3 as ga
+	FROM
+		docentes_cv_all_rows dc
+	where
+		dc.institucion_educativa_3 is not NULL AND dc.institucion_educativa_3 <> ''
+union ALL
+	select
+		DISTINCT dc.institucion_educativa_4 as ga
+	FROM
+		docentes_cv_all_rows dc
+	where
+		dc.institucion_educativa_4 is not NULL AND dc.institucion_educativa_4 <> '' ) as instituciones;
+
+			]]>
+		</sql>
+	</changeSet>	
+	<changeSet author="xtecuan" id="16" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+
+INSERT INTO Instituciones_educativas (nombre, tipo_institucion) VALUES(N'No Definida', N'Universitaria');
+
+
+			]]>
+		</sql>
+	</changeSet>	
+   <changeSet id="006-Instituciones_educativas" author="xtecuan">
+    <tagDatabase tag="006-Instituciones_educativas" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

@@ -1,0 +1,47 @@
+package sv.gob.mined.projects.sgipd.jobs.steps.sigob;
+
+import org.jboss.logging.Logger;
+import sv.gob.mined.projects.sgipd.entities.DocentesPlaza;
+import sv.gob.mined.projects.sgipd.entities.Plaza;
+import sv.gob.mined.projects.sgipd.repositories.DocentePlazaRepository;
+import sv.gob.mined.projects.sgipd.repositories.PlazaRepository;
+import sv.gob.mined.projects.sgipd.repositories.PlazasAprobadaRepository;
+
+import javax.batch.api.chunk.AbstractItemReader;
+import javax.batch.runtime.context.JobContext;
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.util.List;
+
+@Named
+@Dependent
+public class SIGOBSOLAprobadosReader extends AbstractItemReader {
+    private static Logger LOG = Logger.getLogger(SIGOBSOLAprobadosReader.class);
+    @Inject
+    JobContext jobContext;
+
+    @Inject
+    DocentePlazaRepository docentePlazaRepository;
+
+    private List<DocentesPlaza> data;
+    private Integer count;
+
+    @Override
+    public void open(Serializable checkpoint) throws Exception {
+        data = docentePlazaRepository.findAll();
+        LOG.info("Top 10 Plaza Reader Found: "+data.size()+" items!");
+        count = 0;
+    }
+
+    @Override
+    public DocentesPlaza readItem() throws Exception {
+        if (count >= data.size()) {
+            return null;
+        }
+        jobContext.setTransientUserData(count);
+        LOG.info("Docente Plaza Final Read Item: index: "+count);
+        return data.get(count++);
+    }
+}

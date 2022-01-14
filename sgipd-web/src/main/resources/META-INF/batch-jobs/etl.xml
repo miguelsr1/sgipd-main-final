@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="etl" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/jobXML_1_0.xsd"
+     version="1.0">
+    <listeners>
+        <listener ref="jobListener"/>
+    </listeners>
+    <step id="vexp" next="docentes">
+        <listeners>
+            <listener ref="vexpedienteDocentesE2CvListener"/>
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="vexpedienteDocentesE2CvReader"/>
+            <processor ref="vexpedienteDocentesE2CvProcessor"/>
+            <writer ref="vexpedienteDocentesE2CvWriter"/>
+        </chunk>
+    </step>
+    <step id="docentes" next="docentesExperiencia">
+        <listeners>
+            <listener ref="nuevosDatosExpedienteListener"/>
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="nuevosDatosExpedienteReader"/>
+            <processor ref="nuevosDatosExpedienteProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="nuevosDatosExpedienteWriter"/>
+        </chunk>
+    </step>
+    <step id="docentesExperiencia" next="docentesEstudios">
+        <listeners>
+            <listener ref="docenteExperienciaListener"/>
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="docenteExperienciaReader"/>
+            <processor ref="docenteExperienciaProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="docenteExperienciaWriter"/>
+        </chunk>
+    </step>
+    <step id="docentesEstudios" next="docenteCapacitaciones">
+        <listeners>
+            <listener ref="docenteEstudioListener"/>
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="docenteEstudioReader"/>
+            <processor ref="docenteEstudioProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="docenteEstudioWriter"/>
+        </chunk>
+    </step>
+    <step id="docenteCapacitaciones">
+        <listeners>
+            <listener ref="docenteCapacitacionListener"/>
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="docenteCapacitacionReader"/>
+            <processor ref="docenteCapacitacionProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="docenteCapacitacionWriter"/>
+        </chunk>
+    </step>
+</job>

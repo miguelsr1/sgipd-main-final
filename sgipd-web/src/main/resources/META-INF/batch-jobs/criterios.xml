@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="criterios" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/jobXML_1_0.xsd" version="1.0">
+    <listeners>
+        <listener ref="jobListener" />
+    </listeners>
+
+    <step id="criterio3a" next="criterio3b">
+        <listeners>
+            <listener ref="criterio3aListener" />
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="criterio3aReader"/>
+            <processor ref="criterio3aProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="criterio3aWriter" />
+        </chunk>
+    </step>
+    <step id="criterio3b" next="criterio4a">
+        <listeners>
+            <listener ref="criterio3bListener" />
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="criterio3bReader"/>
+            <processor ref="criterio3bProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="criterio3bWriter" />
+        </chunk>
+    </step>
+    <step id="criterio4a" next="criterio4b">
+        <listeners>
+            <listener ref="criterio4aListener" />
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="criterio4aReader"/>
+            <processor ref="criterio4aProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="criterio4aWriter" />
+        </chunk>
+    </step>
+    <step id="criterio4b" next="criterio5">
+        <listeners>
+            <listener ref="criterio4bListener" />
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="criterio4bReader"/>
+            <processor ref="criterio4bProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="criterio4bWriter" />
+        </chunk>
+    </step>
+    <step id="criterio5">
+        <listeners>
+            <listener ref="criterio5Listener" />
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="criterio5Reader"/>
+            <processor ref="criterio5Processor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="criterio5Writer" />
+        </chunk>
+    </step>
+
+</job>

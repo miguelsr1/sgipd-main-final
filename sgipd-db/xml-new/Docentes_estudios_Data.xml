@@ -1,0 +1,77 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="18" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+
+INSERT INTO Docentes_estudios (id_sigobsol_usuario, annio_graduacion, indice_titulo, id_grado_academico, 
+                               id_especialidad, id_institucion_educativa)
+select
+	er.codigo_de_solicitante as [id_sigobsol_usuario],
+	dbo.validarAnnioGraduacion(er.annio_de_graduacion) as [annio_graduacion],
+	er.indice_titulo as [indice_titulo],
+	dbo.obtenerIdGradoAcademico(er.grado_academico) as [id_grado_academico],
+	dbo.obtenerIdEspecialidad(er.especialidad) as [id_especialidad],
+	dbo.obtenerIdInstitucion(er.institucion_educativa,'Universitaria') as [id_institucion_educativa]
+FROM
+	(
+	select
+		dc1.codigo_de_solicitante as [codigo_de_solicitante],
+		dc1.grado_academico_1 as [grado_academico],
+		dc1.especialidad_1 as [especialidad],
+		dc1.institucion_educativa_1 as [institucion_educativa],
+		dc1.annio_de_graduacion_1 as [annio_de_graduacion],
+		1 as [indice_titulo]
+	from
+		docentes_cv_all_rows dc1
+union all
+	select
+		dc2.codigo_de_solicitante as [codigo_de_solicitante],
+		dc2.grado_academico_2 as [grado_academico],
+		dc2.especialidad_2 as [especialidad],
+		dc2.institucion_educativa_2 as [institucion_educativa],
+		dc2.annio_de_graduacion_2 as [annio_de_graduacion],
+		2 as [indice_titulo]
+	from
+		docentes_cv_all_rows dc2
+union all
+	select
+		dc3.codigo_de_solicitante as [codigo_de_solicitante],
+		dc3.grado_academico_3 as [grado_academico],
+		dc3.especialidad_3 as [especialidad],
+		dc3.institucion_educativa_3 as [institucion_educativa],
+		dc3.annio_de_graduacion_3 as [annio_de_graduacion],
+		3 as [indice_titulo]
+	from
+		docentes_cv_all_rows dc3
+union all
+	select
+		dc4.codigo_de_solicitante as [codigo_de_solicitante],
+		dc4.grado_academico_4 as [grado_academico],
+		dc4.especialidad_4 as [especialidad],
+		dc4.institucion_educativa_4 as [institucion_educativa],
+		dc4.annio_de_graduacion_4 as [annio_de_graduacion],
+		4 as [indice_titulo]
+	from
+		docentes_cv_all_rows dc4	
+) as er where er.codigo_de_solicitante in (
+select id_sigobsol_usuario from Docentes 
+);
+
+
+			]]>
+		</sql>
+	</changeSet>	
+   <changeSet id="007-Docentes_estudios" author="xtecuan">
+    <tagDatabase tag="007-Docentes_estudios" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

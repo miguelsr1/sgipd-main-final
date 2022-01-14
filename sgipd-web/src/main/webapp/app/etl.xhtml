@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+        
+    <ui:define name="content">
+        
+        <div style="margin: auto; width: 75%; border: 3px solid #f9fafb; padding: 10px;">
+            <div class="p-col-12">
+                
+                <div class="card ui-fluid" jsf:id="divFiltro">
+                    <h4><h:outputLabel value="#{bundle.etl_title}"/> </h4>
+                    <br/>
+                    
+
+                                        
+                    <div class="p-field p-grid">
+                         <div class="p-col-3 p-md-3">
+
+                            <p:commandButton   icon="pi pi-file-excel"
+                                             value="#{bundle.etl_procesar}"
+                                               actionListener="#{etlBean.etl}"
+                                               styleClass="p-col-3 p-mb-2 p-md-2 p-mb-md-0" update="@this"/>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="criterio3a-job" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/jobXML_1_0.xsd" version="1.0">
+    <listeners>
+        <listener ref="jobListener" />
+    </listeners>
+
+    <step id="criterio3a">
+        <listeners>
+            <listener ref="criterio3aListener" />
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="criterio3aReader"/>
+            <processor ref="criterio3aProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="criterio3aWriter" />
+        </chunk>
+    </step>
+</job>

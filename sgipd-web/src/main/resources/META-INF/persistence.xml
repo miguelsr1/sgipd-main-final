@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="sgipd-PU">
+        <jta-data-source>java:jboss/datasources/sgipdDS</jta-data-source>
+        <mapping-file>META-INF/nativeQueries.xml</mapping-file>
+        <properties>
+            <!-- Properties for Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="javax.persistence.lock.timeout" value="-2"/>
+            <property name="hibernate.cache.use_second_level_cache" value="false"/>
+        </properties>
+        <class>sv.gob.mined.projects.sgipd.entities.Calificacion</class>
+        <class>sv.gob.mined.projects.sgipd.entities.CentroEducativo</class>
+        <class>sv.gob.mined.projects.sgipd.entities.Criterio</class>
+        <class>sv.gob.mined.projects.sgipd.entities.Departamento</class>
+        <class>sv.gob.mined.projects.sgipd.entities.Docente</class>
+        <class>sv.gob.mined.projects.sgipd.entities.DocenteAplicacion</class>
+        <class>sv.gob.mined.projects.sgipd.entities.DocenteCapacitacion</class>
+        <class>sv.gob.mined.projects.sgipd.entities.DocenteEstudio</class>
+        <class>sv.gob.mined.projects.sgipd.entities.DocenteExperiencia</class>
+        <class>sv.gob.mined.projects.sgipd.entities.Especialidad</class>
+        <class>sv.gob.mined.projects.sgipd.entities.GradoAcademico</class>
+        <class>sv.gob.mined.projects.sgipd.entities.InstitucionEducativa</class>
+        <class>sv.gob.mined.projects.sgipd.entities.Municipio</class>
+        <class>sv.gob.mined.projects.sgipd.entities.Plaza</class>
+        <class>sv.gob.mined.projects.sgipd.entities.TipoTramite</class>
+        <class>sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio1V1</class>
+        <class>sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio2</class>
+        <class>sv.gob.mined.projects.sgipd.fakeentities.ReporteCriterio2V2</class>
+        <class>sv.gob.mined.projects.sgipd.fakeentities.CalculateCriterio5</class>
+        <class>sv.gob.mined.projects.sgipd.fakeentities.ReporteDocentesAplicaciones</class>
+        <class>sv.gob.mined.projects.sgipd.fakeentities.ReporteDocentesPruebaPsicometrica</class>
+        <class>sv.gob.mined.projects.sgipd.fakeentities.RDPPsicometrica</class>
+        <class>sv.gob.mined.projects.sgipd.fakeentities.RDPPsiIngrCalif</class>
+        <class>sv.gob.mined.projects.sgipd.fakeentities.TramiteAplicacionDocente</class>
+        <class>sv.gob.mined.projects.sgipd.entities.NuevosDatosExpediente</class>
+        <class>sv.gob.mined.projects.sgipd.entities.DocenteResumen</class>
+        <class>sv.gob.mined.projects.sgipd.entities.DocentesRevint</class>
+        <class>sv.gob.mined.projects.sgipd.entities.DocentesPlaza</class>
+        <class>sv.gob.mined.projects.sgipd.entities.DocentesNoplaza</class>
+        <class>sv.gob.mined.projects.sgipd.entities.PlazasAprobada</class>
+        <class>sv.gob.mined.projects.sgipd.entities.PlazasReprobada</class>
+    </persistence-unit>
+    <persistence-unit name="sigobsol-PU">
+        <jta-data-source>java:jboss/datasources/sigobsolDS</jta-data-source>
+<!--        <mapping-file>META-INF/nativeQueries.xml</mapping-file>-->
+        <properties>
+            <!-- Properties for Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="javax.persistence.lock.timeout" value="-2"/>
+            <property name="hibernate.cache.use_second_level_cache" value="false"/>
+        </properties>
+        <class>sv.gob.mined.projects.sgipd.entities.sigobsol.VexpedienteDocentesE2Cv</class>
+        <class>sv.gob.mined.projects.sgipd.entities.sigobsol.VexpedienteDocentesE2Plaza</class>
+    </persistence-unit>
+</persistence>

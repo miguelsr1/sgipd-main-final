@@ -1,0 +1,8 @@
+#Adds a datasource with overloadable parameters using system environment variables
+data-source add \
+  --name=sgipd-pool \
+  --jndi-name=${env.MSSQLSERVER_DATASOURCE:java:jboss/datasources/sgipdDS} \
+  --driver-name=mssqlserver \
+  --connection-url=${env.MSSQLSERVER_URL:jdbc:sqlserver://192.168.37.1:1433;databaseName=SGIDTPVD} \
+  --user-name=${env.MSSQLSERVER_USER:JulianRivera} \
+  --password=${env.MSSQLSERVER_PASSWORD:jup1t3r*2021}

@@ -1,0 +1,16 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+
+    <div class="layout-footer">
+        <div class="layout-footer-right">
+            <p:outputLabel value="versión &lt;b&gt;#{versionView.version}&lt;/b&gt;" escape="false" />
+            <p:spacer width="10"/>
+            <p:outputLabel value="Ambiente &lt;b&gt;#{versionView.ambiente}&lt;/b&gt;" escape="false"/>
+        </div>
+    </div>
+</ui:composition>

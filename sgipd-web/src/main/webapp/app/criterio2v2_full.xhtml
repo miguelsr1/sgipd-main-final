@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:define name="content">
+
+        <div style="margin: auto; width: 95%; border: 3px solid #f9fafb; padding: 10px;">
+            <div class="p-col-12">
+
+                <div class="card ui-fluid" jsf:id="divFiltro">
+                    <h4><h:outputLabel value="#{bundle.criterio2_title_panel}"/></h4>
+                    <br/>
+
+                    <div class="card">
+                        <div class="p-grid">
+
+                            <div class="p-col-12" style="margin-top: 1em">
+                                <div class="box">
+                                    <p:outputLabel styleClass="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                        <b>Seleccione el archivo con las calificaciones:</b>
+                                    </p:outputLabel>
+
+                                    <h:form id="ffileupload">
+
+
+                                        <p:fileUpload id="xlsxFile"
+                                                      mode="simple"
+                                                      skinSimple="true"
+                                                      auto="true"
+                                                      process="@this" update="messages"
+                                                      listener="#{criterio2V2FullBean.handleFileUpload}"
+                                                      sizeLimit="15857600" allowTypes="/(\.|\/)(xlsx)$/"
+                                                      invalidSizeMessage="Maximum file size allowed is 10 MB"
+                                                      invalidFileMessage="only xlsx is allowed"
+                                        />
+
+                                    </h:form>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="p-field p-grid">
+                        <div class="p-col-3 p-md-3">
+
+
+                            <p:commandButton value="Guardar Calificaciones" icon="pi pi-save" ajax="true"
+                                             action="#{criterio2V2FullBean.readAndSaveCalificaciones()}"
+                                             styleClass="p-col-3 p-mb-2 p-md-2 p-mb-md-0"
+                                             update="@this,messages,:ffileupload"/>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </ui:define>
+</ui:composition>
+
+

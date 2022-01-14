@@ -1,0 +1,130 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="8" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+
+INSERT
+	INTO
+	Centros_educativos (codinfra,
+	nombrece,
+	departamento,
+	municipio,
+	id_municipio)
+select
+	DISTINCT pfp.COD_INFRA as [codinfra],
+	pfp.NOMBRE_CENTRO_EDUCATIVO as [nombrece],
+	pfp.Departamento as [departamento],
+	pfp.Municipio as [municipio],
+	dbo.obtenerIdMunicipio(pfp.Municipio,
+	pfp.Departamento) as [id_municipio]
+from
+	Plazas2021_from_prod pfp
+WHERE
+	pfp.COD_INFRA NOT IN 
+	(10693, 10704, 10939,10940,
+	11982,12028,13352,13547,64083,
+	64083,64083,72074,86015)
+order by
+	pfp.COD_INFRA,
+	pfp.Departamento ,
+	pfp.Municipio ;
+
+			]]>
+		</sql>
+	</changeSet>
+
+	<changeSet author="xtecuan" id="9" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<!--
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(10693, N'Centro Escolar Doctor Eduardo Enrique Barrientos', N'Sonsonate', N'San Julian', 30);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(10704, N'Complejo Educativo de Santo Domingo de Guzmán', N'Sonsonate', N'Santo Domingo De Guzman', 221);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(10939, N'Centro Escolar Alfredo Espino', N'Chalatenango', N'San Francisco Morazan', 80);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(10940, N'Centro Escolar Cantón Sumpul Chacones', N'Chalatenango', N'San Francisco Morazan', 80);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(11982, N'Complejo Educativo Profesor Alberto Varela', N'La  Paz', N'San Luis Talpa', 259);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(12028, N'Centro Escolar Doctora Milagro Antonia Martínez de Figueroa', N'La  Paz', N'Zacatecoluca', 259);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(13352, N'Complejo Educativo Profesor Vidal Umanzor', N'La Unión', N'Concepcion De Oriente', 175);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(13547, N'Centro Escolar de San José La Fuente', N'La Unión', N'San Jose La Fuente', 137);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(64083, N'Centro Escolar Reino de España', N'Sonsonate', N'San Julian', 30);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(72074, N'Centro Escolar Cantón San cristobal', N'Cuscatlán', N'Suchitoto', 219);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(86015, N'Centro Escolar Caserío El Alto Cantón Huertas Viejas', N'La Unión', N'Anamoros', 162);
+			-->
+			<![CDATA[
+
+
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(10693, N'Centro Escolar Doctor Eduardo Enrique Barrientos', N'Sonsonate', N'San Julián', 31);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(10704, N'Complejo Educativo de Santo Domingo de Guzmán', N'Sonsonate', N'Santo Domingo De Guzmán', 222);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(10939, N'Centro Escolar Alfredo Espino', N'Chalatenango', N'San Francisco Morazán', 81);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(10940, N'Centro Escolar Cantón Sumpul Chacones', N'Chalatenango', N'San Francisco Morazán', 81);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(11982, N'Complejo Educativo Profesor Alberto Varela', N'La  Paz', N'San Juan Talpa', 259);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(12028, N'Centro Escolar Doctora Milagro Antonia Martínez de Figueroa', N'La  Paz', N'San Pedro Nonualco', 197);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(13352, N'Complejo Educativo Profesor Vidal Umanzor', N'La Unión', N'Concepción De Oriente', 176);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(13547, N'Centro Escolar de San José La Fuente', N'La Unión', N'San Jose', 38);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(64083, N'Centro Escolar Reino de España', N'Sonsonate', N'San Julián', 31);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(72074, N'Centro Escolar Cantón San Cristóbal', N'Cuscatlán', N'Suchitoto', 219);
+INSERT INTO Centros_educativos
+(codinfra, nombrece, departamento, municipio, id_municipio)
+VALUES(86015, N'Centro Escolar Caserío El Alto Cantón Huertas Viejas', N'La Unión', N'Anamorós', 163);
+
+
+			]]>
+		</sql>
+	</changeSet>
+
+	
+   <changeSet id="003-Centros_educativos" author="xtecuan">
+    <tagDatabase tag="003-Centros_educativos" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

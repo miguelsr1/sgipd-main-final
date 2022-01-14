@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="en">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <link href="#{request.contextPath}/resources/images/favicon.png" rel="shortcut icon"/>
+        </f:facet>
+        <title><ui:insert name="title">SGIPD</ui:insert></title>
+        <h:outputScript name="js/layout.js" library="paradise-layout"/>
+        <h:outputScript name="js/prism.js" library="paradise-layout"/>
+        <h:outputScript name="funciones.js" library="js" />
+        <ui:insert name="head"/>
+
+        <style>
+            body .ui-menu.ui-menubar {
+                padding: 0rem;
+                background: #f8f9fa;
+                border-radius: 4px;
+            }
+
+            .layout-content .content-section {
+                padding: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            .layout-content .content-section.introduction {
+                background-color: var(--surface-b);
+                color: var(--text-color);
+                padding-bottom: 0;
+                display: flex;
+                align-items: top;
+                justify-content: space-between;
+            }
+            .layout-content .content-section.introduction {
+                color: var(--text-color);
+            }
+            .layout-content .content-section.implementation {
+                background-color: var(--surface-b);
+                color: var(--text-color);
+            }
+            .pageColumnMid{
+                float : left;
+                vertical-align: middle !important;
+                clear : none;
+                height: 82px;
+                padding-left: 60px;
+            }
+            .p-sm-1, .p-sm-2, .p-sm-3, .p-sm-4, .p-sm-5, .p-sm-6, .p-sm-7, .p-sm-8, .p-sm-9, .p-sm-10, .p-sm-11, .p-sm-12, .p-md-1, .p-md-2, .p-md-3, .p-md-4, .p-md-5, .p-md-6, .p-md-7, .p-md-8, .p-md-9, .p-md-10, .p-md-11, .p-md-12, .p-lg-1, .p-lg-2, .p-lg-3, .p-lg-4, .p-lg-5, .p-lg-6, .p-lg-7, .p-lg-8, .p-lg-9, .p-lg-10, .p-lg-11, .p-lg-12, .p-xl-1, .p-xl-2, .p-xl-3, .p-xl-4, .p-xl-5, .p-xl-6, .p-xl-7, .p-xl-8, .p-xl-9, .p-xl-10, .p-xl-11, .p-xl-12 {
+                padding: 0.5rem;
+            }
+            .negrita{
+                font-weight: bold;
+            }
+            .numero{
+                text-align: right;    
+            }
+            .centrado{
+                text-align: center;    
+            }
+            .ui-growl {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 475px;
+            }
+            .ui-growl-message {
+                padding: 0 0 5px 0;
+                width: 400px;
+                float: right;
+            }
+            body .ui-fileupload-simple .ui-icon-plusthick::before {
+                content: "\e96c" !important;
+            }
+        </style>
+    </h:head>
+
+    <h:body styleClass="#{guestPreferences.inputStyleClass}" style="margin: 0 auto; ">
+        <p:growl id="messages" escape="false" showDetail="true" showSummary="true" life="60000">
+            <p:autoUpdate />
+        </p:growl>
+        
+        <div class="layout-wrapper #{guestPreferences.menuMode} ">
+            <ui:include src="./topbar.xhtml"/>
+
+            <div class="layout-main">
+                <ui:include src="./menu.xhtml"/>
+
+                <div class="layout-content" style="background-color: #ffffff !important;">
+                    <h:form prependId="false">
+                        <ui:insert name="content"/>
+                    </h:form>
+                </div>
+
+                <ui:include src="./footer.xhtml"/>
+            </div>
+        </div>
+        
+        <p:ajaxStatus style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+            <f:facet name="default">
+                <h:outputText value="" />
+            </f:facet>
+            <f:facet name="start">
+                <i class="pi pi-spin pi-spinner layout-ajax-loader-icon" aria-hidden="true"></i>
+            </f:facet>
+
+            <f:facet name="complete">
+                <h:outputText value="" />
+            </f:facet>
+        </p:ajaxStatus>
+        <div class="layout-mask modal-in"></div>
+        <h:outputStylesheet name="main.css" library="css"/>
+        <h:outputStylesheet name="css/primeicons.css" library="paradise-layout" />
+        <h:outputStylesheet name="css/primeflex.min.css" library="paradise-layout" />
+        <h:outputStylesheet name="css/demo.css" library="demo" />
+
+        <h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css" library="paradise-layout" />
+    </h:body>
+
+</html>

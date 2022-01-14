@@ -1,0 +1,89 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet author="xtecuan_madafaquer" id="22" dbms="mssql" failOnError="false">
+        <sql dbms="mssql">
+            <!-- Please copy your SQL Code inside CDATA TAG -->
+            <![CDATA[
+            INSERT INTO Docentes_experiencia (id_sigobsol_usuario, institucion_educativa_nacional,
+                                              institucion_educativa_extranjero, cantidad_de_annios,
+                                              departamento, municipio, desde, hasta, nombramiento,
+                                              sector, indice_experiencia)
+
+            select er.codigo_de_solicitante            as [id_sigobsol_usuario],
+                   er.institucion_educativa_nacional   as [institucion_educativa_nacional],
+                   er.institucion_educativa_extranjero as [institucion_educativa_extranjero],
+                   er.cantidad_de_annios               as [cantidad_de_annios],
+                   er.departamento                     as [departamento],
+                   er.municipio                        as [municipio],
+                   er.desde                            as [desde],
+                   er.hasta                            as [hasta],
+                   er.nombramiento                     as [nombramiento],
+                   er.sector                           as [sector],
+                   er.indice_experiencia               as [indice_experiencia]
+            FROM (
+                     select d1.codigo_de_solicitante              as [codigo_de_solicitante],
+                            d1.institucion_educativa_nacional_1   as [institucion_educativa_nacional],
+                            d1.institucion_educativa_extranjero_1 as [institucion_educativa_extranjero],
+                            d1.cantidad_de_annios_1               as [cantidad_de_annios],
+                            d1.departamento_1                     as [departamento],
+                            d1.municipio_1                        as [municipio],
+                            d1.desde_1                            as [desde],
+                            d1.hasta_1                            as [hasta],
+                            d1.nombramiento_1                     as [nombramiento],
+                            d1.sector_1                           as [sector],
+                            1                                     as [indice_experiencia]
+                     from docentes_cv_all_rows d1
+                     union all
+                     select d2.codigo_de_solicitante              as [codigo_de_solicitante],
+                            d2.institucion_educativa_nacional_2   as [institucion_educativa_nacional],
+                            d2.institucion_educativa_extranjero_2 as [institucion_educativa_extranjero],
+                            d2.cantidad_de_annios_2               as [cantidad_de_annios],
+                            d2.departamento_2                     as [departamento],
+                            d2.municipio_2                        as [municipio],
+                            d2.desde_2                            as [desde],
+                            d2.hasta_2                            as [hasta],
+                            d2.nombramiento_2                     as [nombramiento],
+                            d2.sector_2                           as [sector],
+                            2                                     as [indice_experiencia]
+                     from docentes_cv_all_rows d2
+                     union all
+                     select d3.codigo_de_solicitante              as [codigo_de_solicitante],
+                            d3.institucion_educativa_nacional_3   as [institucion_educativa_nacional],
+                            d3.institucion_educativa_extranjero_3 as [institucion_educativa_extranjero],
+                            d3.cantidad_de_annios_3               as [cantidad_de_annios],
+                            d3.departamento_3                     as [departamento],
+                            d3.municipio_3                        as [municipio],
+                            d3.desde_3                            as [desde],
+                            d3.hasta_3                            as [hasta],
+                            d3.nombramiento_3                     as [nombramiento],
+                            d3.sector_3                           as [sector],
+                            3                                     as [indice_experiencia]
+                     from docentes_cv_all_rows d3
+                     union all
+                     select d4.codigo_de_solicitante              as [codigo_de_solicitante],
+                            d4.institucion_educativa_nacional_4   as [institucion_educativa_nacional],
+                            d4.institucion_educativa_extranjero_4 as [institucion_educativa_extranjero],
+                            d4.cantidad_de_annios_4               as [cantidad_de_annios],
+                            d4.departamento_4                     as [departamento],
+                            d4.municipio_4                        as [municipio],
+                            d4.desde_4                            as [desde],
+                            d4.hasta_4                            as [hasta],
+                            d4.nombramiento_4                     as [nombramiento],
+                            d4.sector_4                           as [sector],
+                            4                                     as [indice_experiencia]
+                     from docentes_cv_all_rows d4
+                 ) as er;
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="009-Docentes_experiencia" author="xtecuan_madafaquer">
+        <tagDatabase tag="009-Docentes_experiencia"/>
+    </changeSet>
+
+
+</databaseChangeLog>

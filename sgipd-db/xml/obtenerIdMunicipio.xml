@@ -1,0 +1,46 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+<changeSet author="xtecuan" id="7"  dbms="mssql" failOnError="true">
+                <createProcedure 
+                                dbms="mssql"
+                                encoding="utf8"
+                                procedureName="obtenerIdMunicipio"
+                                schemaName="dbo">
+				
+<![CDATA[
+CREATE   FUNCTION [dbo].[obtenerIdMunicipio](@nombreMunicipio varchar(100), @nombreDepart varchar(100))  
+RETURNS bigint   
+AS   
+BEGIN  
+DECLARE @id_municipio bigint;  
+select
+	@id_municipio = m.id
+from
+	Municipios m,
+	Departamentos d
+WHERE
+	m.id_departamento = d.id
+	AND 
+    m.nombre = @nombreMunicipio
+	AND d.nombre = @nombreDepart;
+iF (@id_municipio IS NULL)
+	SET @id_municipio = 259;
+RETURN @id_municipio;  
+END;
+						 
+]]>
+                </createProcedure>
+   </changeSet>	
+	
+   <changeSet id="stored-functions-7" author="xtecuan">
+    <tagDatabase tag="stored-functions-7" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

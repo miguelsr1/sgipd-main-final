@@ -1,0 +1,143 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <!--0.1 to 0.4-->
+    <include relativeToChangelogFile="true" file="xml-new/views-prod/Master_views.xml" />
+
+    <!--1-->
+    <include relativeToChangelogFile="true" file="sql-new/Departamentos_table.sql" />
+
+    <!--4.1-->
+    <include relativeToChangelogFile="true" file="xml-new/obtenerIdMunicipio.xml" />
+
+    <!--4.2-->
+    <include relativeToChangelogFile="true" file="xml-new/obtenerIdDepartamento.xml" />
+
+    <!--5-->
+    <include relativeToChangelogFile="true" file="sql-new/Municipios_table.sql" />
+
+    <!--7-->
+    <include relativeToChangelogFile="true" file="sql-new/Centros_educativos_table.sql" />
+
+    <!--9.1-->
+    <include relativeToChangelogFile="true" file="sql-new/Tipo_tramite_table.sql" />
+
+    <!--10-->
+    <include relativeToChangelogFile="true" file="sql-new/Docentes_table.sql" />
+
+    <!--12-->
+    <include relativeToChangelogFile="true" file="sql-new/Plazas_table.sql" />
+
+    <!--14-->
+    <include relativeToChangelogFile="true" file="sql-new/Instituciones_educativas_table.sql" />
+
+    <!--16.1-->
+    <include relativeToChangelogFile="true" file="xml-new/obtenerIdInstitucion.xml" />
+
+    <!--16.2-->
+    <include relativeToChangelogFile="true" file="sql-new/Especialidad_table.sql" />
+
+    <!--16.5-->
+    <include relativeToChangelogFile="true" file="sql-new/Grado_academico_table.sql" />
+
+    <!--16.8-->
+    <include relativeToChangelogFile="true" file="xml-new/obtenerIdEspecialidad.xml" />
+
+    <!--16.9-->
+    <include relativeToChangelogFile="true" file="xml-new/obtenerIdGradoAcademico.xml" />
+
+    <!--006_patch-Catalogo-->
+    <include relativeToChangelogFile="true" file="xml-new/TagCatalogos_Data.xml" />
+
+    <!--17-->
+    <include relativeToChangelogFile="true" file="sql-new/Docentes_estudios_table.sql" />
+
+    <!--17.1-->
+    <include relativeToChangelogFile="true" file="xml-new/validarAnnioGraduacion.xml" />
+
+    <!--19-->
+    <include relativeToChangelogFile="true" file="sql-new/Docentes_capacitacion_table.sql" />
+
+    <!--21-->
+    <include relativeToChangelogFile="true" file="sql-new/Docentes_experiencia_table.sql" />
+
+    <!--23-->
+    <include relativeToChangelogFile="true" file="sql-new/Criterio_table.sql" />
+
+    <!--25-->
+    <include relativeToChangelogFile="true" file="sql-new/Docentes_aplicaciones_table.sql" />
+
+    <!--27-->
+    <include relativeToChangelogFile="true" file="sql-new/Calificaciones_table.sql" />
+
+    <!--28-->
+    <include relativeToChangelogFile="true" file="sql-new/Docentes_seleccionados_table.sql" />
+
+    <!--013_patch-CalifDoceSel-->
+    <include relativeToChangelogFile="true" file="xml-new/TagCalificacionesDocentes_seleccionados_Data.xml" />
+
+    <!--30,31-->
+    <include relativeToChangelogFile="true" file="xml-new/Especialidad_alter_table.xml" />
+
+    <!--32,33,34,35-->
+    <include relativeToChangelogFile="true" file="xml-new/procedimientosParaReportePruebaTecnica.xml" />
+
+    <!--36-->
+    <include relativeToChangelogFile="true" file="sql-new/Calificaciones_extra_data_table.sql" />
+
+    <!--2,3 y 4 dbtag 001-Departamentos-->
+    <include relativeToChangelogFile="true" file="xml-new/Departamentos_Data.xml" />
+
+    <!--6 dbtag 002-Municipios-->
+    <include relativeToChangelogFile="true" file="xml-new/Municipios_Data.xml" />
+
+    <!--8,9 dbtag 003-Centros_educativos-->
+    <include relativeToChangelogFile="true" file="xml-new/Centros_educativos_Data.xml" />
+    <!--9.2 dbtag 0031-Tipo_tramite-->
+    <include relativeToChangelogFile="true" file="xml-new/Tipo_tramite_Data.xml" />
+
+    <!--13 dbtag 005-Plazas-->
+    <include relativeToChangelogFile="true" file="xml-new/Plazas_Data.xml" />
+
+    <!--15,16 dbtag 006-Instituciones_educativas-->
+    <include relativeToChangelogFile="true" file="xml-new/Instituciones_educativas_Data.xml" />
+
+    <!--16.3,16.4-->
+    <include relativeToChangelogFile="true" file="xml-new/Especialidad_Data.xml" />
+
+    <!--16.6,16.7-->
+    <include relativeToChangelogFile="true" file="xml-new/Grado_academico_Data.xml" />
+
+    <!--11 dbtag 004-Docentes-->
+    <include relativeToChangelogFile="true" file="xml-new/Docentes_Data.xml" />
+
+    <!--18 dbtag 007-Docentes_estudios-->
+    <include relativeToChangelogFile="true" file="xml-new/Docentes_estudios_Data.xml" />
+
+    <!--20 dbtag 008-Docentes_capacitacion-->
+    <include relativeToChangelogFile="true" file="xml-new/Docentes_capacitacion_Data.xml" />
+
+    <!--22 dbtag 009-Docentes_experiencia-->
+    <include relativeToChangelogFile="true" file="xml-new/Docentes_experiencia_Data.xml" />
+
+    <!--24 dbtag 010-Criterio-->
+    <include relativeToChangelogFile="true" file="xml-new/Criterio_Data.xml" />
+
+    <!--26 dbtag 012-Docentes_aplicaciones-->
+    <include relativeToChangelogFile="true" file="xml-new/Docentes_aplicaciones_Data.xml" />
+
+    <!--29-->
+    <include relativeToChangelogFile="true" file="xml-new/Especialidad_from_Plazas_Data.xml" />
+
+    <!--100-->
+    <include relativeToChangelogFile="true" file="xml-new/Calificaciones_alter_table.xml" />
+
+    <!--37-->
+    <include relativeToChangelogFile="true" file="xml-new/Docentes_capacitacion_alter_table.xml" />
+
+    <!--38, 39, 40-->
+    <include relativeToChangelogFile="true" file="xml-new/Docentes_experiencia_alter_table.xml" />
+
+    <!--41-->
+    <include relativeToChangelogFile="true" file="xml-new/funcionesVariasReportesGenerados.xml" />
+</databaseChangeLog>

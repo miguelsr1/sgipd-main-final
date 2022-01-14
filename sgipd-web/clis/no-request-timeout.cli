@@ -1,0 +1,1 @@
+ /subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=no-request-timeout, value=5400000)

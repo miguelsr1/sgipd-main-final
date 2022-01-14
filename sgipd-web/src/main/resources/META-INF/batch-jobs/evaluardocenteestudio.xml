@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="evaluar-docente-estudio" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/jobXML_1_0.xsd" version="1.0">
+    <listeners>
+        <listener ref="jobListener" />
+    </listeners>
+
+
+    <step id="evaluarDocenteEstudio">
+        <listeners>
+            <listener ref="encontrarListener" />
+        </listeners>
+        <chunk item-count="3">
+            <reader ref="encontrarReader"/>
+            <processor ref="encontrarProcessor">
+                <properties>
+                    <property name="currentUser" value="#{jobParameters['currentUser']}"/>
+                </properties>
+            </processor>
+            <writer ref="encontrarWriter" />
+        </chunk>
+    </step>
+
+
+</job>

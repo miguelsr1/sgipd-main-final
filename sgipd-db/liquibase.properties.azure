@@ -1,0 +1,13 @@
+changeLogFile: sgipd.mssql-azure.xml
+#liquibase.outputEncoding: utf8
+driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+url: jdbc:sqlserver://localhost:8089;databaseName=SGIPD_DEV
+username: JulianRivera@sgipd-mined
+password: jup1t3r*2021
+referenceDriver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+referenceUrl: jdbc:sqlserver://localhost:8089;databaseName=SGIPD_DEV
+referencePassword: jup1t3r*2021
+#liquibaseProLicenseKey: aeioufakekey32aeioufakekey785463214
+#classpath: ./drivers/com/microsoft/sqlserver/9.2.1.jre11/mssql-jdbc-9.2.1.jre11.jar
+#liquibase.hub.mode: ALL
+#liquibase.hub.ApiKey: nadbdJtlUYgxbB-1YPNgo-Ow_2ZwIoDTk6q7MwscqPk

@@ -1,0 +1,12 @@
+config2=Sample Text Xtecuan!
+var1=23
+
+
+exceltemplates=C:/Users/xtecuan/Documents/MINED/SGIPD/codigo/sgipd-main/sgipd-web/exceltemplates/
+
+grade_folder=C:/Users/xtecuan/Documents/MINED/SGIPD/grades_xlsx/
+
+grade_folder_filters=departamento,municipio,centroeducativo
+
+keycloak_logout_url=http://sgipd.mined.gob.sv:8080/auth/realms/MINED/protocol/openid-connect/logout?redirect_uri=
+keycloak_sgipd_url=http://oblitz.xtesoft.com:8080/sgipd-web/index.mined

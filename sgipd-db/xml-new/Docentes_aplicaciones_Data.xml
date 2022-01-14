@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="26" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+INSERT
+	INTO
+	Docentes_aplicaciones (id_tramite_aplic,
+	id_sigobsol_usuario,
+	tipo_tramite,
+	id_secuencial_plaza) 
+select
+	d.codigo_de_tramite as [id_tramite_aplic],
+	d.codigo_de_solicitante as [id_sigobsol_usuario],
+	d.codigo_de_tipo_de_tramite as [tipo_tramite],
+	d.id_de_plaza as [id_secuencial_plaza]
+from
+	docentes_aplicaciones_from_prod d
+WHERE
+	d.codigo_de_solicitante in (
+	SELECT
+		d2.id_sigobsol_usuario
+	from
+		Docentes d2)
+	and d.id_de_plaza in (
+	SELECT
+		p.id_secuencial
+	from
+		Plazas p);
+
+			]]>
+		</sql>
+	</changeSet>
+	
+   <changeSet id="012-Docentes_aplicaciones" author="xtecuan">
+    <tagDatabase tag="012-Docentes_aplicaciones" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

@@ -1,0 +1,56 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="16.3" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+INSERT INTO Especialidad (nombre) 
+select
+	DISTINCT especialidades.ga
+from
+	(
+	select
+		DISTINCT dc.especialidad_1 as ga
+	FROM
+		docentes_cv_all_rows dc
+	where
+		dc.especialidad_1 is not NULL AND dc.especialidad_1 <> ''
+union ALL
+	select
+		DISTINCT dc.especialidad_2 as ga
+	FROM
+		docentes_cv_all_rows dc
+	where
+		dc.especialidad_2 is not NULL AND dc.especialidad_2 <> ''
+union ALL
+	select
+		DISTINCT dc.especialidad_3 as ga
+	FROM
+		docentes_cv_all_rows dc
+	where
+		dc.especialidad_3 is not NULL AND dc.especialidad_3 <> ''
+union ALL
+	select
+		DISTINCT dc.especialidad_4 as ga
+	FROM
+		docentes_cv_all_rows dc
+	where
+		dc.especialidad_4 is not NULL AND dc.especialidad_4 <> '' ) as especialidades;
+
+			]]>
+		</sql>
+	</changeSet>
+	<changeSet author="xtecuan" id="16.4" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+INSERT INTO Especialidad(nombre) values('No Definido');
+			]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

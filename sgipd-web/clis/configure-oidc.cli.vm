@@ -1,0 +1,1 @@
+/subsystem=keycloak/secure-deployment=sgipd-web.war:add(realm=MINED, resource=sgipd-web-vm, public-client=true, auth-server-url=http://sgipd.mined.gob.sv:8080/auth/, ssl-required=NONE)

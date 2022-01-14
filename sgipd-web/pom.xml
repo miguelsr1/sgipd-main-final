@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>sv.gob.mined.projects</groupId>
+        <artifactId>sgipd-main</artifactId>
+        <version>2.0.0.Final-SNAPSHOT</version>
+    </parent>
+    <artifactId>sgipd-web</artifactId>
+
+    <packaging>war</packaging>
+
+    <name>SGIPD WildFly Bootable JAR JSF, CDI, JAX-RS, Microprofile-config and JPA</name>
+    <description>SGIPD Web: Aplicación Web de Sistema de Gestion Interno de Plazas Docentes</description>
+    <url>https://github.com/xtesoft/tcd-project.git</url>
+    <developers>
+        <developer>
+            <id>001</id>
+            <name>Julian Rivera-Pineda</name>
+            <email>xtecuan@protonmail.com</email>
+            <organization>MINED</organization>
+            <organizationUrl>https://www.mined.gob.sv/</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>UTC/GMT -6:00 hours</timezone>
+            <url>https://github.com/xtecuan</url>
+        </developer>
+    </developers>
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>8.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.3</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--  Primefaces Libraries -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>10.0.0</version>
+        </dependency>
+        <!--Primefaces Paradise Theme-->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>paradise-theme</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <!--  jboss-logging API -->
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--  These dependencies are the jboss-logging tools magic -->
+        <!--  the jboss-logging-tools processor  -->
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging-processor</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!--Apache POI for Excel spreadsheets->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.0</version>
+        </dependency-->
+        
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+
+        
+        <!--dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.0</version>
+            <type>jar</type>
+        </dependency-->
+        
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+
+        
+        <!--dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>4.1.0</version>
+            <type>jar</type>
+        </dependency-->
+        
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-core</artifactId>
+            <version>15.0.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-envers -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-envers</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-jar-maven-plugin</artifactId>
+                <configuration>
+                    <feature-packs>
+                        <feature-pack>
+                            <location>wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly}</location>
+                        </feature-pack>
+                        <feature-pack>
+                            <!--https://github.com/wildfly-extras/wildfly-datasources-galleon-pack-->
+                            <groupId>org.wildfly</groupId>
+                            <artifactId>wildfly-datasources-galleon-pack</artifactId>
+                            <!--<version>1.2.2.Final</version>-->
+                            <version>2.0.3.Final</version>
+                        </feature-pack>
+                        <feature-pack>
+                            <!--http://www.mastertheboss.com/keycloak/installing-keycloak-client-adapters-on-wildfly/-->
+                            <location>org.keycloak:keycloak-adapter-galleon-pack:15.0.2</location>
+                          </feature-pack>
+                    </feature-packs>
+                    <layers>
+                        <!--https://docs.wildfly.org/24/Bootable_Guide.html#wildfly_layers-->
+                        <layer>logging</layer>
+                        <layer>cdi</layer>
+                        <layer>jpa</layer>
+                        <layer>jsf</layer>
+                        <!--Para cambiar driver de base de datos-->
+                        <!--<layer>postgresql-driver</layer>-->
+                        <layer>mssqlserver-driver</layer>
+                        <layer>jaxrs</layer>
+                        <layer>microprofile-platform</layer>
+                        <layer>jsonp</layer>
+                        <layer>jsonb</layer>
+                        <layer>web-server</layer>
+                        <layer>keycloak-client-oidc</layer>
+                        <layer>ejb-lite</layer>
+                        <layer>batch-jberet</layer>
+                    </layers>
+                    <context-root>false</context-root>
+                    <cli-sessions>
+                        <cli-session>
+                            <script-files>
+                                <script>clis/configure-oidc.cli</script>
+                                <script>clis/configure-datasource.cli</script>
+                                <script>clis/coordinator-environment.cli</script>
+                                <script>clis/no-request-timeout.cli</script>
+                                <script>clis/configure-datasource-sigobsol.cli</script>
+                            </script-files>
+                        </cli-session>
+                    </cli-sessions>
+                    <excluded-layers>
+                        <layer>deployment-scanner</layer>
+                    </excluded-layers>
+                    <plugin-options>
+                        <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
+                    </plugin-options>
+                    <arguments>
+                        <!--https://docs.wildfly.org/24/Bootable_Guide.html#wildfly-bootable-jar-arguments-->
+                        <argument>-b=0.0.0.0</argument>
+                        <argument>--install-dir=/deployments/wildfly</argument>
+                    </arguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>openshift</id>
+            <build>
+                <finalName>${project.artifactId}</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-jar-maven-plugin</artifactId>
+                        <configuration>
+                            <cloud/>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <repositories>
+        <repository>
+            <url>http://repository.primefaces.org/</url>
+            <id>PrimeFaces-maven-lib</id>
+            <layout>default</layout>
+            <name>Repository for library PrimeFaces-maven-lib</name>
+        </repository>
+        <repository>
+            <id>tcd-local-repo</id>
+            <name>Primefaces Paradise theme Local repo</name>
+            <url>file:${project.basedir}/repository</url>
+        </repository>
+    </repositories>
+</project>

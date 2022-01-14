@@ -1,0 +1,43 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="24" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+INSERT INTO Criterio (nombre_criterio, descripcion_criterio, puntaje_maximo, descripcion_puntaje, formula, indice_criterio, fraccion_ponderacion) VALUES(N'Criterio 1', N'La evaluación favorable obtenida en las pruebas psicométricas de personalidad.', 3.0, N'La nota que obtendrá el aspirante oscilará entre 0.00 y 10.00, 
+siendo 7.00 la nota mínima de aprobación. 
+La nota obtenida se multiplicará por 3.00', N'0.3', 1, 0.3000);
+INSERT INTO Criterio (nombre_criterio, descripcion_criterio, puntaje_maximo, descripcion_puntaje, formula, indice_criterio, fraccion_ponderacion) VALUES(N'Criterio 2', N'La calificación obtenida en la prueba de conocimientos.', 2.5, N'La nota que obtendrá el aspirante oscilará entre 0.00 y 10.00, 
+siendo 7.00 la nota mínima de aprobación. 
+La nota obtenida se multiplicará por 2.50', N'0.25', 2, 0.2500);
+INSERT INTO Criterio (nombre_criterio, descripcion_criterio, puntaje_maximo, descripcion_puntaje, formula, indice_criterio, fraccion_ponderacion) VALUES(N'Criterio 3', N'La experiencia previa satisfactoria obtenida como docente interino en el sector público en una plaza por Ley de Salarios en los últimos tres años de forma consecutiva.', 1.5, N'Experiencia docente:
+•De 1 a 3 años = 0.33 puntos
+•De 3.1 a 6 años= 0.66 puntos
+•De 6.1 o más = 1.00 puntos
+Adicionalmente:
+Interino con al menos 3 años consecutivos = 0.50
+puntos', N'0.15', 3, 0.1500);
+INSERT INTO Criterio (nombre_criterio, descripcion_criterio, puntaje_maximo, descripcion_puntaje, formula, indice_criterio, fraccion_ponderacion) VALUES(N'Criterio 4', N'La especialidad docente. Se probará con la especialidad que conste en su título, así como de los procesos de formación especializada que haya recibido.', 2.0, N'Criterios:
+•Título de la especialidad = 1.00 puntos
+•Capacitaciones (hasta un máximo de cinco en los últimos años) = 0.20 puntos por cada capacitación hasta un máximo de 1.00 puntos', N'0.20', 4, 0.2000);
+INSERT INTO Criterio (nombre_criterio, descripcion_criterio, puntaje_maximo, descripcion_puntaje, formula, indice_criterio, fraccion_ponderacion) VALUES(N'Criterio 5', N'La residencia personal, según sea accesible al centro escolar al que aspira.', 1.0, N'Criterios:
+•Reside en el mismo municipio donde se ubica el centro escolar = 1.00 puntos
+•Reside en el mismo departamento pero no en el mismo municipio donde se ubica el centro escolar = 0.66 puntos
+•Reside en un departamento distinto al departamento donde se ubica el centro escolar = 0.33 puntos', N'0.10', 5, 0.1000);
+
+			]]>
+		</sql>
+	</changeSet>
+	
+   <changeSet id="010-Criterio" author="xtecuan">
+    <tagDatabase tag="010-Criterio" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

@@ -1,0 +1,139 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+		
+		
+   <changeSet author="xtecuan" id="16" dbms="mssql" failOnError="false">
+		<sql dbms="mssql">
+			<!-- Please copy your SQL Code inside CDATA TAG -->
+			<![CDATA[
+INSERT INTO Especialidad(nombre) values('Administración de Empresas');
+INSERT INTO Especialidad(nombre) values('Administración de la Educación');
+INSERT INTO Especialidad(nombre) values('Administración Escolar');
+INSERT INTO Especialidad(nombre) values('Agronomía');
+INSERT INTO Especialidad(nombre) values('Artes Plásticas (con conocimiento en expresión plástica y cerámica)');
+INSERT INTO Especialidad(nombre) values('Artes Plásticas');
+INSERT INTO Especialidad(nombre) values('Artes, opción: Música');
+INSERT INTO Especialidad(nombre) values('Asistencia Administrativa y Contable');
+INSERT INTO Especialidad(nombre) values('Biología y Química');
+INSERT INTO Especialidad(nombre) values('Biología');
+INSERT INTO Especialidad(nombre) values('Campo de Hostelería y Turismo');
+INSERT INTO Especialidad(nombre) values('Campo de la Salud');
+INSERT INTO Especialidad(nombre) values('Ciencias Comerciales');
+INSERT INTO Especialidad(nombre) values('Ciencias de la Educación');
+INSERT INTO Especialidad(nombre) values('Ciencias Económicas');
+INSERT INTO Especialidad(nombre) values('Ciencias Físicas');
+INSERT INTO Especialidad(nombre) values('Ciencias Naturales (conocimiento de Lenguaje de Señas)');
+INSERT INTO Especialidad(nombre) values('Ciencias Naturales para III Ciclo de Educación Básica y Media');
+INSERT INTO Especialidad(nombre) values('Ciencias Naturales');
+INSERT INTO Especialidad(nombre) values('Ciencias para la Salud');
+INSERT INTO Especialidad(nombre) values('Ciencias Religiosas y Morales');
+INSERT INTO Especialidad(nombre) values('Ciencias Religiosas');
+INSERT INTO Especialidad(nombre) values('Ciencias Sociales para III Ciclo con Conocimiento de Lenguaje de Señas');
+INSERT INTO Especialidad(nombre) values('Ciencias Sociales para III Ciclo de Educación Básica');
+INSERT INTO Especialidad(nombre) values('Ciencias Sociales');
+INSERT INTO Especialidad(nombre) values('Ciencias y Biología');
+INSERT INTO Especialidad(nombre) values('Ciencias y Humanidades');
+INSERT INTO Especialidad(nombre) values('Ciencias');
+INSERT INTO Especialidad(nombre) values('Computación');
+INSERT INTO Especialidad(nombre) values('Contabilidad');
+INSERT INTO Especialidad(nombre) values('Contaduría Pública');
+INSERT INTO Especialidad(nombre) values('Danza');
+INSERT INTO Especialidad(nombre) values('Diseño Gráfico');
+INSERT INTO Especialidad(nombre) values('Educación Artística');
+INSERT INTO Especialidad(nombre) values('Educación Básica para I y II Ciclos');
+INSERT INTO Especialidad(nombre) values('Educación Básica para I, II y III Ciclos');
+INSERT INTO Especialidad(nombre) values('Educación Básica');
+INSERT INTO Especialidad(nombre) values('Educación en la Fe');
+INSERT INTO Especialidad(nombre) values('Educación Especial');
+INSERT INTO Especialidad(nombre) values('Educación Física y Deportes');
+INSERT INTO Especialidad(nombre) values('Educación Física');
+INSERT INTO Especialidad(nombre) values('Educación Física, Deporte y Recreación');
+INSERT INTO Especialidad(nombre) values('Educación Inicial y Parvularia');
+INSERT INTO Especialidad(nombre) values('Educación Inicial');
+INSERT INTO Especialidad(nombre) values('Educación Media en el Campo de la Electrónica');
+INSERT INTO Especialidad(nombre) values('Educación Media en el Campo de la Salud');
+INSERT INTO Especialidad(nombre) values('Educación Media Técnica en la Especialidad de Mantenimiento de Computadoras');
+INSERT INTO Especialidad(nombre) values('Educación Media Técnica en la Especialidad de Programación de Computadoras');
+INSERT INTO Especialidad(nombre) values('Educación Media Técnica en Sistemas y Redes Informáticas');
+INSERT INTO Especialidad(nombre) values('Educación Media, Enseñanza de la Mecánica Automotriz');
+INSERT INTO Especialidad(nombre) values('Educación Musical (con conocimiento en guitarra superior)');
+INSERT INTO Especialidad(nombre) values('Educación para la Salud');
+INSERT INTO Especialidad(nombre) values('Educación Parvularia (conocimiento de Lenguaje de Señas)');
+INSERT INTO Especialidad(nombre) values('Educación Parvularia (LESSA)');
+INSERT INTO Especialidad(nombre) values('Educación Parvularia');
+INSERT INTO Especialidad(nombre) values('Electricidad');
+INSERT INTO Especialidad(nombre) values('Electrónica');
+INSERT INTO Especialidad(nombre) values('Electrotecnia');
+INSERT INTO Especialidad(nombre) values('Enfermería');
+INSERT INTO Especialidad(nombre) values('Estudios Sociales');
+INSERT INTO Especialidad(nombre) values('Filosofía y Letras');
+INSERT INTO Especialidad(nombre) values('Filosofía');
+INSERT INTO Especialidad(nombre) values('Física y Matemática');
+INSERT INTO Especialidad(nombre) values('Física');
+INSERT INTO Especialidad(nombre) values('Formación Pedagógica');
+INSERT INTO Especialidad(nombre) values('Gastronomía');
+INSERT INTO Especialidad(nombre) values('Gestión de Turismo Alternativo');
+INSERT INTO Especialidad(nombre) values('Gestión y Desarrollo Turístico');
+INSERT INTO Especialidad(nombre) values('Hostelería y Turismo');
+INSERT INTO Especialidad(nombre) values('Humanidades');
+INSERT INTO Especialidad(nombre) values('Idioma Inglés para III Ciclo de Educación Básica y Media');
+INSERT INTO Especialidad(nombre) values('Idioma Inglés');
+INSERT INTO Especialidad(nombre) values('Informática');
+INSERT INTO Especialidad(nombre) values('Ingeniaría Agroindustrial');
+INSERT INTO Especialidad(nombre) values('Ingeniería Agrícola con opción Fitotecnia');
+INSERT INTO Especialidad(nombre) values('Ingeniería Agronómica');
+INSERT INTO Especialidad(nombre) values('Ingeniería Civil');
+INSERT INTO Especialidad(nombre) values('Ingeniería de Software');
+INSERT INTO Especialidad(nombre) values('Ingeniería en Sistemas y Computación');
+INSERT INTO Especialidad(nombre) values('Ingeniería en Sistemas');
+INSERT INTO Especialidad(nombre) values('Ingeniería Industrial');
+INSERT INTO Especialidad(nombre) values('Ingeniero Agrónomo, Fitotecnia');
+INSERT INTO Especialidad(nombre) values('Lenguaje de Señas Salvadoreño');
+INSERT INTO Especialidad(nombre) values('Lenguaje y Literatura para III Ciclo de Educación Básica y Media');
+INSERT INTO Especialidad(nombre) values('Lenguaje y Literatura para III Ciclo de Educación Básica');
+INSERT INTO Especialidad(nombre) values('Lenguaje y Literatura');
+INSERT INTO Especialidad(nombre) values('Lenguaje y Matemática');
+INSERT INTO Especialidad(nombre) values('Letras');
+INSERT INTO Especialidad(nombre) values('Logística y Aduanas');
+INSERT INTO Especialidad(nombre) values('Matemática (conocimiento de Lenguaje de Señas)');
+INSERT INTO Especialidad(nombre) values('Matemática para III Ciclo de Educación Básica y Media');
+INSERT INTO Especialidad(nombre) values('Matemática para III Ciclo de Educación Básica');
+INSERT INTO Especialidad(nombre) values('Matemática y Física');
+INSERT INTO Especialidad(nombre) values('Matemática');
+INSERT INTO Especialidad(nombre) values('Mecánica Automotriz');
+INSERT INTO Especialidad(nombre) values('Mercadeo');
+INSERT INTO Especialidad(nombre) values('Nada');
+INSERT INTO Especialidad(nombre) values('Orientación para la Vida');
+INSERT INTO Especialidad(nombre) values('Pedagogía y Psicología');
+INSERT INTO Especialidad(nombre) values('Preparación y Conservación de Alimentos');
+INSERT INTO Especialidad(nombre) values('Preparatoria y Servicios de Alimentos');
+INSERT INTO Especialidad(nombre) values('Psicología');
+INSERT INTO Especialidad(nombre) values('Psicoterapeuta');
+INSERT INTO Especialidad(nombre) values('Química');
+INSERT INTO Especialidad(nombre) values('Salud Materno Infantil');
+INSERT INTO Especialidad(nombre) values('Salud');
+INSERT INTO Especialidad(nombre) values('Sistemas Computacionales');
+INSERT INTO Especialidad(nombre) values('Sistemas de Computación');
+INSERT INTO Especialidad(nombre) values('Sistemas Informáticos');
+INSERT INTO Especialidad(nombre) values('Sociales');
+INSERT INTO Especialidad(nombre) values('Técnico Vocacional');
+INSERT INTO Especialidad(nombre) values('Teología Pastoral');
+INSERT INTO Especialidad(nombre) values('Teología');
+INSERT INTO Especialidad(nombre) values('Terapia Educativa');
+INSERT INTO Especialidad(nombre) values('Trabajo Social');
+INSERT INTO Especialidad(nombre) values('Turismo');
+INSERT INTO Especialidad(nombre) values('No Definido');
+			]]>
+		</sql>
+	</changeSet>
+
+   <changeSet id="data_profesores-4" author="xtecuan">
+    <tagDatabase tag="data-profesores-4" />
+   </changeSet>
+
+
+
+</databaseChangeLog>

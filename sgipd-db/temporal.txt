@@ -1,0 +1,2 @@
+ALTER TABLE SGIDTPVD.dbo.Calificaciones ALTER COLUMN valor_calif decimal(10,4) NULL;
+ALTER TABLE SGIDTPVD.dbo.Calificaciones ALTER COLUMN valor_ponderacion decimal(10,4) NULL;
